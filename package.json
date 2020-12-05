@@ -1,0 +1,36 @@
+{
+  "name": "anna-native",
+  "version": "1.0.0",
+  "description": "Anna Native comes",
+  "main": "esm/index.js",
+  "esnext": "esm/index.js",
+  "module": "esm/index.js",
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnaSearl/anna-native.git"
+  },
+  "keywords": [
+    "component",
+    "components",
+    "react",
+    "react-component",
+    "react-native",
+    "ui"
+  ],
+  "author": "AnnaSearl",
+  "license": "MIT",
+  "files": [
+    "esm"
+  ],
+  "bugs": {
+    "url": "https://github.com/AnnaSearl/anna-native/issues"
+  },
+  "homepage": "https://github.com/AnnaSearl/anna-native#readme",
+  "devDependencies": {
+    "prettier": "2.2.1",
+    "typescript": "^4.1.2"
+  }
+}
