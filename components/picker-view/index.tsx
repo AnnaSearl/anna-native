@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, ViewStyle } from 'react-native';
 import Node from '../node';
 import styles from './style';
 
@@ -10,10 +10,11 @@ export interface PickerViewProps {
   children?: React.ReactNode;
   onOK?: (e: any) => void;
   onCancel?: (e: any) => void;
+  contentStyle?: ViewStyle | null;
 }
 
 const PickerView: React.FC<PickerViewProps> = props => {
-  const { title, children, onOK, onCancel } = props;
+  const { title, contentStyle, children, onOK, onCancel } = props;
   return (
     <View style={styles[prefixCls]}>
       <View style={styles[`${prefixCls}-toolbar`]}>
@@ -25,8 +26,9 @@ const PickerView: React.FC<PickerViewProps> = props => {
           <Text style={styles[`${prefixCls}-confirm`]}>确定</Text>
         </Pressable>
       </View>
-      <ScrollView style={styles[`${prefixCls}-columns`]}>
-        <Node>{children}</Node>
+      {/* 这里要对 ScrollView 设置 style 而不是 contentContainerStyle */}
+      <ScrollView showsVerticalScrollIndicator={false} style={styles[`${prefixCls}-container`]}>
+        <Node style={[styles[`${prefixCls}-columns`], contentStyle]}>{children}</Node>
       </ScrollView>
     </View>
   );

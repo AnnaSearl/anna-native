@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create<any>({
   'picker-view-column': {
-    position: 'relative',
     overflow: 'hidden',
     padding: 5,
+    flex: 1,
   },
   'picker-view-column-item': {
     height: 44,

@@ -32,11 +32,15 @@ const styles = StyleSheet.create<any>({
     flex: 1,
   },
   'tabs-content-wrapper': {
+    flex: 1,
     flexDirection: 'row',
   },
   'tabs-content': {
     flexShrink: 0,
     width: '100%',
+  },
+  'tabs-content-node': {
+    flex: 1,
   },
   'tabs-content-inactive': {
     display: 'none',

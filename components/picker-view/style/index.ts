@@ -29,11 +29,13 @@ const styles = StyleSheet.create<any>({
     lineHeight: 44,
     fontWeight: '500',
   },
-  'picker-view-columns': {
-    position: 'relative',
-    // height: 220,
+  'picker-view-container': {
     minHeight: 132,
     maxHeight: screen.height - 300,
+  },
+  'picker-view-columns': {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   'picker-view-selected': {
     position: 'absolute',

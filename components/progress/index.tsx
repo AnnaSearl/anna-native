@@ -22,11 +22,13 @@ const ProgressBar = (props: TagProps) => {
         useNativeDriver: false,
       }),
     ]).start();
+
+    console.log('value', value);
   }, [value]);
 
   const widthInterpolated = widthAnimation.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0%', '100%'],
+    outputRange: ['0%', '99%'],
     extrapolate: 'clamp',
   });
 

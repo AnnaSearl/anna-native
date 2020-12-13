@@ -151,7 +151,8 @@ const Tabs = (props: TabProps): React.ReactElement => {
         ref={ref => {
           header.current = ref;
         }}
-        contentContainerStyle={[styles[`${prefixCls}-plain`], titleFlexible ? { flex: 1 } : null]} // 注意，当 titleFlexible 为 true 时这里一定要设置 flex: 1 使 ScrollView 的 content 撑满
+        style={styles[`${prefixCls}-plain`]}
+        contentContainerStyle={[titleFlexible ? { flex: 1 } : null]} // 注意，当 titleFlexible 为 true 时这里一定要设置 flex: 1 使 ScrollView 的 content 撑满
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         onLayout={handleHeaderLayout}
@@ -206,13 +207,13 @@ const TabContent: React.FC<TabContentProps> = (
       <View
         style={[styles[`${prefixCls}-content`], styles[`${prefixCls}-content-inactive`], style]}
       >
-        <Node>{children}</Node>
+        <Node style={styles[`${prefixCls}-content-node`]}>{children}</Node>
       </View>
     );
   }
   return (
     <View style={[styles[`${prefixCls}-content`], style]}>
-      <Node>{children}</Node>
+      <Node style={styles[`${prefixCls}-content-node`]}>{children}</Node>
     </View>
   );
 };

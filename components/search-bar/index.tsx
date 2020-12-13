@@ -63,6 +63,7 @@ const SearchBar: React.ForwardRefRenderFunction<any, SearchBarProps> = (props, r
           onFocus={onFocus}
           onBlur={onBlur}
           onChangeText={onChangeText}
+          clearButtonMode="while-editing"
           onSubmitEditing={onSubmitEditing}
           value={value}
           returnKeyType={returnKeyType}

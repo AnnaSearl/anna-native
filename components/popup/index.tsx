@@ -85,7 +85,7 @@ const Popup: React.FC<PopupProps> = props => {
                 <Icon name="line-error-32" size={16} color="#999" />
               </Pressable>
             ) : null}
-            <Node>{children}</Node>
+            <Node style={styles[`${prefixCls}-content`]}>{children}</Node>
           </Animated.View>
         </TouchableWithoutFeedback>
       </View>

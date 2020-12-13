@@ -16,34 +16,22 @@ const Node: React.FC<NodeProps> = props => {
     return <View>{null}</View>;
   }
 
-  if (React.isValidElement(children)) {
+  if (typeof children === 'string' || typeof children === 'number') {
     return (
-      <View
-        style={style}
-        onLayout={onLayout}
-        onStartShouldSetResponderCapture={onStartShouldSetResponderCapture}
-      >
+      <Text style={style} numberOfLines={numberOfLines} onLayout={onLayout}>
         {children}
-      </View>
-    );
-  }
-
-  if (Array.isArray(children)) {
-    return (
-      <View
-        style={style}
-        onLayout={onLayout}
-        onStartShouldSetResponderCapture={onStartShouldSetResponderCapture}
-      >
-        {children}
-      </View>
+      </Text>
     );
   }
 
   return (
-    <Text style={style} numberOfLines={numberOfLines} onLayout={onLayout}>
+    <View
+      style={style}
+      onLayout={onLayout}
+      onStartShouldSetResponderCapture={onStartShouldSetResponderCapture}
+    >
       {children}
-    </Text>
+    </View>
   );
 };
 

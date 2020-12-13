@@ -14,6 +14,7 @@ const styles = StyleSheet.create<any>({
     textAlign: 'center',
     width: 50,
     // height: 20,
+    padding: 0,
     marginVertical: Platform.OS !== 'ios' ? 0 : 0,
     // backgroundColor: 'red',
   },

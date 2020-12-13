@@ -36,7 +36,7 @@ const PickerViewColumn: React.FC<PickerViewColumnProps> = props => {
   };
 
   return (
-    <View style={styles.prefixCls}>
+    <View style={styles[prefixCls]}>
       {options?.map((option, index: number) => (
         <Pressable key={index} onPress={() => handlePress(index)}>
           <View style={styles[`${prefixCls}-item`]}>

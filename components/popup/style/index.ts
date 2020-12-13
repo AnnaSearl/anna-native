@@ -23,6 +23,9 @@ const styles = StyleSheet.create<any>({
     paddingVertical: 15,
     textAlign: 'center',
   },
+  'popup-content': {
+    overflow: 'hidden',
+  },
 });
 
 export default styles;
