@@ -1,13 +1,17 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { View, ScrollView, Text, Pressable, ViewStyle } from 'react-native';
-import Icon from '../icon';
-import SafeFilling from '../safe-filling';
-import { $dark4 } from '@styles/theme';
-import styles from './style';
+import React, { useRef, useState, useEffect } from "react";
+import { View, ScrollView, Text, Pressable, ViewStyle } from "react-native";
+import Icon from "../icon";
+import SafeFilling from "../safe-filling";
+import { $dark4 } from "../style/theme";
+import styles from "./style";
 
-const prefixCls = 'cascade';
+const prefixCls = "cascade";
 
-const getMatchLevelOptions = (value: valueType, level: number, data: OptionProps[]): any => {
+const getMatchLevelOptions = (
+  value: valueType,
+  level: number,
+  data: OptionProps[]
+): any => {
   let r = null;
   const currentLevel = level - 1;
   for (let i = 0; i < data.length; i += 1) {
@@ -70,10 +74,14 @@ export interface CascadeProps {
   height?: string;
   style?: ViewStyle;
   prompt?: (e: any) => string;
-  onChange: (v: valueType[], selectedOptions?: OptionProps[], isLast?: boolean) => void;
+  onChange: (
+    v: valueType[],
+    selectedOptions?: OptionProps[],
+    isLast?: boolean
+  ) => void;
 }
 
-const Cascade: React.FC<CascadeProps> = props => {
+const Cascade: React.FC<CascadeProps> = (props) => {
   const {
     name,
     value = [],
@@ -138,7 +146,7 @@ const Cascade: React.FC<CascadeProps> = props => {
 
     rechoose.current = false;
 
-    setScrollTop(top => {
+    setScrollTop((top) => {
       return top === 0 ? 1 : 0;
     });
     if (Array.isArray(i.children) && i.children.length > 0) {
@@ -155,7 +163,7 @@ const Cascade: React.FC<CascadeProps> = props => {
       setLocalValue(val.slice(0, index + 1));
     }
     setLevelOptions(getMatchLevelOptions(item.value, index + 1, options));
-    setScrollTop(top => {
+    setScrollTop((top) => {
       return top === 0 ? 1 : 0;
     });
   };
@@ -181,11 +189,15 @@ const Cascade: React.FC<CascadeProps> = props => {
           >
             <Text style={styles[`${prefixCls}-step-text`]}>{item.text}</Text>
             <View style={styles[`${prefixCls}-step-dot`]} />
-            {index === 0 ? null : <View style={styles[`${prefixCls}-step-line`]} />}
+            {index === 0 ? null : (
+              <View style={styles[`${prefixCls}-step-line`]} />
+            )}
 
             <View style={styles[`${prefixCls}-step-right`]}>
               <View style={styles[`${prefixCls}-step-prompt`]}>
-                <Text style={styles[`${prefixCls}-step-prompt-text`]}>{prompt?.(index)}</Text>
+                <Text style={styles[`${prefixCls}-step-prompt-text`]}>
+                  {prompt?.(index)}
+                </Text>
               </View>
               <Icon name="line-return-cente-24" size={12} color={$dark4} />
             </View>
@@ -196,7 +208,7 @@ const Cascade: React.FC<CascadeProps> = props => {
         <View style={styles[`${prefixCls}-title`]}>
           <Text style={styles[`${prefixCls}-title-text`]}>{`选择${name}`}</Text>
         </View>
-        {levelOptions?.map(i => (
+        {levelOptions?.map((i) => (
           <Pressable
             key={i.value}
             style={styles[`${prefixCls}-option`]}

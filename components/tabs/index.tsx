@@ -8,7 +8,7 @@ import {
   Animated,
   useWindowDimensions,
 } from 'react-native';
-import { $fontColor } from '@styles/theme';
+import { $fontColor } from '../style/theme';
 import Node from '../node';
 import styles from './style';
 
@@ -131,7 +131,9 @@ const Tabs = (props: TabProps): React.ReactElement => {
     const currentTabTitle = tabTitleLayouts?.[index];
     const currentTabTitleCenterPoint = currentTabTitle?.x + currentTabTitle?.width / 2;
     const harfWindowWidth = windowWidth / 2;
-    header.current.scrollTo({ x: currentTabTitleCenterPoint - harfWindowWidth });
+    header.current.scrollTo({
+      x: currentTabTitleCenterPoint - harfWindowWidth,
+    });
   };
 
   const handleTabTitleLayout = (e: any, index: number) => {
@@ -169,7 +171,11 @@ const Tabs = (props: TabProps): React.ReactElement => {
                 styles[`${prefixCls}-plain-item-text`],
                 titleStyle,
                 selected === index
-                  ? { fontWeight: '700', color: $fontColor, ...titleActiveStyle }
+                  ? {
+                      fontWeight: '700',
+                      color: $fontColor,
+                      ...titleActiveStyle,
+                    }
                   : null,
               ]}
             >
@@ -180,7 +186,9 @@ const Tabs = (props: TabProps): React.ReactElement => {
         <Animated.View
           style={[
             styles[`${prefixCls}-plain-active`],
-            { transform: [{ translateX: activeX }, { scaleX: titleCursorWidth || activeWidth }] },
+            {
+              transform: [{ translateX: activeX }, { scaleX: titleCursorWidth || activeWidth }],
+            },
           ]}
         />
       </ScrollView>

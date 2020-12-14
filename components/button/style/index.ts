@@ -1,80 +1,80 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 import {
   $btnDefaultBg,
   $brandColor,
   $brandSecondaryColor,
   $light1,
   $fontColor1,
-} from '@styles/theme';
+} from "../../style/theme";
 
 const styles = StyleSheet.create<any>({
   btn: {
-    position: 'relative',
+    position: "relative",
     paddingHorizontal: 10,
     borderRadius: 32,
     backgroundColor: $btnDefaultBg,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
-  'btn-text': {
+  "btn-text": {
     height: 32,
     lineHeight: 32,
     fontSize: 13,
-    textAlign: 'center',
+    textAlign: "center",
   },
-  'btn-small': {
+  "btn-small": {
     paddingHorizontal: 10,
     borderRadius: 29,
   },
-  'btn-small-text': {
+  "btn-small-text": {
     height: 29,
     lineHeight: 29,
   },
-  'btn-large': {
+  "btn-large": {
     paddingHorizontal: 20,
     borderRadius: 37,
   },
-  'btn-large-text': {
+  "btn-large-text": {
     height: 37,
     lineHeight: 37,
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
   },
-  'btn-superlarge': {
+  "btn-superlarge": {
     paddingHorizontal: 20,
     borderRadius: 40,
   },
-  'btn-superlarge-text': {
+  "btn-superlarge-text": {
     height: 40,
     lineHeight: 40,
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
   },
-  'btn-primary': {
+  "btn-primary": {
     backgroundColor: $brandColor,
   },
-  'btn-primary-text': {
+  "btn-primary-text": {
     color: $light1,
   },
-  'btn-plain': {
-    borderColor: '#8D93A1',
+  "btn-plain": {
+    borderColor: "#8D93A1",
     borderWidth: 0.5,
     backgroundColor: $light1,
   },
-  'btn-plain-text': {
+  "btn-plain-text": {
     color: $fontColor1,
   },
-  'btn-plain-primary': {
+  "btn-plain-primary": {
     borderColor: $brandColor,
     borderWidth: 0.5,
     backgroundColor: $light1,
   },
-  'btn-plain-primary-text': {
+  "btn-plain-primary-text": {
     color: $brandColor,
   },
-  'btn-secondary': {
+  "btn-secondary": {
     backgroundColor: $brandSecondaryColor,
   },
-  'btn-secondary-text': {
+  "btn-secondary-text": {
     color: $brandColor,
   },
 });

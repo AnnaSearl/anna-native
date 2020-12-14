@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Pressable } from 'react-native';
 import Node from '../node';
 import Icon from '../icon';
-import { $brandColor, $dark4 } from '@styles/theme';
+import { $brandColor, $dark4 } from '../style/theme';
 import styles from './style';
 
 const prefixCls = 'picker-view-column';

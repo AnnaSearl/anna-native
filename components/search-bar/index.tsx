@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, TextInput, Text, Animated, Pressable, ViewStyle } from 'react-native';
 import Icon from '../icon';
-import { $fontColor3 } from '@styles/theme';
+import { $fontColor3 } from '../style/theme';
 import styles from './style';
 
 const prefixCls = 'search-bar';

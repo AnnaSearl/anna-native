@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native';
-import { $redBase } from '@styles/theme';
+import { StyleSheet } from "react-native";
+import { $redBase } from "../../style/theme";
 
 const styles = StyleSheet.create<any>({
-  'form-item-explain': {
+  "form-item-explain": {
     fontSize: 12,
     color: $redBase,
     height: 30,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import RNImagePicker from 'react-native-image-picker';
 import Icon from '../icon';
-import { deepClone } from '@utils';
+import { deepClone } from '../_util';
 import styles from './style';
 
 const prefixCls = 'image-picker';
@@ -34,7 +34,7 @@ const ImagePicker: React.FC<ImagePickerProps> = props => {
         path: 'images',
       },
     };
-    RNImagePicker.showImagePicker(options, response => {
+    (RNImagePicker as any).showImagePicker(options, (response: any) => {
       console.log('Response = ', response);
 
       if (response.didCancel) {

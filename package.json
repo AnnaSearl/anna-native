@@ -6,7 +6,8 @@
   "esnext": "esm/index.js",
   "module": "esm/index.js",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "pretsc": "rm -rf esm"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,17 @@
   },
   "homepage": "https://github.com/AnnaSearl/anna-native#readme",
   "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-native": "^0.63.37",
     "prettier": "2.2.1",
+    "react-native-iconfont-cli": "^2.2.1",
     "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-native": "^0.63.4",
+    "react-native-image-picker": "^3.0.1",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-svg": "^12.1.0"
   }
 }

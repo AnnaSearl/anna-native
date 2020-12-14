@@ -1,0 +1,8 @@
+{
+  "symbol_url": "https://at.alicdn.com/t/font_2135724_79hgm3adkug.js",
+  "use_typescript": true,
+  "save_dir": "./components/assets/iconfont",
+  "trim_icon_prefix": "anna-icon",
+  "default_icon_size": 18,
+  "local_svgs": "./components/assets/localSvgs"
+}

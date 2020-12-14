@@ -1,77 +1,84 @@
-import { StyleSheet } from 'react-native';
-import { $light4, $lightBase, $brandColor, $dark2, $dark3, $dark4 } from '@styles/theme';
+import { StyleSheet } from "react-native";
+import {
+  $light4,
+  $lightBase,
+  $brandColor,
+  $dark2,
+  $dark3,
+  $dark4,
+} from "../../style/theme";
 
 const stepHeight = 50;
 
 const styles = StyleSheet.create<any>({
   cascade: {
-    textAlign: 'left',
+    textAlign: "left",
     backgroundColor: $light4,
   },
-  'cascade-selected': {
+  "cascade-selected": {
     minHeight: 45,
     backgroundColor: $lightBase,
     paddingVertical: 12,
   },
-  'cascade-step': {
-    position: 'relative',
+  "cascade-step": {
+    position: "relative",
     height: stepHeight,
     paddingLeft: 44,
     paddingRight: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-  'cascade-step-text': {
+  "cascade-step-text": {
     lineHeight: stepHeight,
     color: $dark2,
     fontSize: 15,
   },
-  'cascade-step-dot': {
-    position: 'absolute',
+  "cascade-step-dot": {
+    position: "absolute",
     width: 9,
     height: 9,
     borderRadius: 9,
-    bottom: '50%',
+    bottom: "50%",
     left: 15,
     marginBottom: -4.5,
     backgroundColor: $brandColor,
   },
-  'cascade-step-line': {
-    position: 'absolute',
-    bottom: '50%',
+  "cascade-step-line": {
+    position: "absolute",
+    bottom: "50%",
     left: 15 + 4,
     width: 1,
     height: stepHeight,
     backgroundColor: $brandColor,
   },
-  'cascade-step-right': {
-    flexDirection: 'row',
-    alignItems: 'center',
+  "cascade-step-right": {
+    flexDirection: "row",
+    alignItems: "center",
   },
-  'cascade-step-prompt': {
+  "cascade-step-prompt": {
     paddingRight: 5,
   },
-  'cascade-step-prompt-text': {
+  "cascade-step-prompt-text": {
     color: $dark4,
     fontSize: 15,
   },
-  'cascade-options': {
+  "cascade-options": {
     minHeight: 100,
     paddingHorizontal: 15,
   },
-  'cascade-title': {
+  "cascade-title": {
     paddingTop: 15,
     paddingBottom: 5,
   },
-  'cascade-title-text': {
+  "cascade-title-text": {
     fontSize: 12,
     color: $dark3,
   },
-  'cascade-option': {
+  "cascade-option": {
     paddingVertical: 15,
   },
-  'cascade-option-text': {
+  "cascade-option-text": {
     color: $dark2,
     fontSize: 15,
   },

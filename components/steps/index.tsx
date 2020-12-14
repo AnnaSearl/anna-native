@@ -4,7 +4,7 @@ import Node from '../node';
 import Icon from '../icon';
 import Row from '../row';
 import Col from '../col';
-import { $brandColor } from '@styles/theme';
+import { $brandColor } from '../style/theme';
 
 import styles from './style';
 
