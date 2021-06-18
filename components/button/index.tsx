@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
+import { TouchableOpacity, ViewStyle, TextStyle, View } from 'react-native';
 import Node from '../node';
 import styles from './style';
 
 const prefixCls = 'btn';
 
-export interface TagProps {
-  type?: string;
-  shape?: string;
+export interface ButtonProps {
+  type?: 'primary';
+  shape?: 'square' | 'circle';
   plain?: boolean;
+  disabled?: boolean;
   look?: string;
-  size?: 'small' | 'medium' | 'large' | 'superlarge';
+  size?: 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';
   width?: number;
   style?: ViewStyle;
   textStyle?: TextStyle;
@@ -18,8 +19,20 @@ export interface TagProps {
   onPress?: () => void;
 }
 
-const Button = (props: TagProps) => {
-  const { type, shape, plain, size, look, width, style, textStyle, children, onPress } = props;
+const Button: React.FC<ButtonProps> = props => {
+  const {
+    type,
+    shape,
+    plain,
+    size,
+    disabled,
+    look,
+    width,
+    style,
+    textStyle,
+    children,
+    onPress,
+  } = props;
 
   const btnStyle: any = [
     styles[prefixCls],
@@ -29,6 +42,7 @@ const Button = (props: TagProps) => {
     styles[`${prefixCls}-${plain && 'plain'}`],
     styles[`${prefixCls}-${plain && type === 'primary' && 'plain-primary'}`],
     styles[`${prefixCls}-${look}`],
+    styles[`${prefixCls}-${disabled && 'disabled'}`],
     width && { width: width },
     style,
   ].filter(i => i);
@@ -40,12 +54,23 @@ const Button = (props: TagProps) => {
     styles[`${prefixCls}-${plain && 'plain'}-text`],
     styles[`${prefixCls}-${plain && type === 'primary' && 'plain-primary'}-text`],
     styles[`${prefixCls}-${look}-text`],
+    styles[`${prefixCls}-${disabled && 'disabled'}-text`],
     textStyle,
   ].filter(i => i);
 
+  const handlePress = () => {
+    if (disabled) {
+      return;
+    }
+    onPress?.();
+  };
+
   return (
-    <TouchableOpacity style={btnStyle} onPress={onPress}>
+    <TouchableOpacity style={btnStyle} onPress={handlePress}>
       <Node style={btnTextStyle}>{children}</Node>
+      {size === 'xxlarge' && type === 'primary' && !disabled ? (
+        <View style={styles[`${prefixCls}-top-border-patch`]} />
+      ) : null}
     </TouchableOpacity>
   );
 };

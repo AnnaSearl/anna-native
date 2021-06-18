@@ -1,56 +1,63 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { $brandColor } from "../../style/theme";
+import { StyleSheet } from 'react-native';
+import { $brandColor } from '../../style/theme';
 
-const screen = Dimensions.get("screen");
+const rowHeight = 44;
 
 const styles = StyleSheet.create<any>({
-  "picker-view": {},
-  "picker-view-toolbar": {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  'wheel-view': {},
+  'wheel-view-toolbar': {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  "picker-view-cancel": {
+  'wheel-view-cancel': {
     paddingHorizontal: 12,
-    color: "#999",
-    height: 44,
-    lineHeight: 44,
-    fontWeight: "500",
+    color: '#999',
+    height: rowHeight,
+    lineHeight: rowHeight,
+    fontWeight: '500',
   },
-  "picker-view-title": {
-    color: "#333",
-    fontWeight: "500",
-    height: 44,
-    lineHeight: 44,
+  'wheel-view-title': {
+    color: '#333',
+    fontWeight: '500',
+    height: rowHeight,
+    lineHeight: rowHeight,
   },
-  "picker-view-confirm": {
+  'wheel-view-confirm': {
     paddingHorizontal: 12,
     color: $brandColor,
-    height: 44,
-    lineHeight: 44,
-    fontWeight: "500",
+    height: rowHeight,
+    lineHeight: rowHeight,
+    fontWeight: '500',
   },
-  "picker-view-container": {
-    minHeight: 132,
-    maxHeight: screen.height - 300,
+  'wheel-view-columns': {
+    height: rowHeight * 5,
+    flexDirection: 'row',
+    overflow: 'hidden',
   },
-  "picker-view-columns": {
-    flexDirection: "row",
-    alignItems: "center",
+  'wheel-view-overlay': {
+    zIndex: 1,
   },
-  "picker-view-selected": {
-    position: "absolute",
+  'wheel-view-selected': {
+    position: 'absolute',
     left: 0,
-    top: 88,
-    width: "100%",
-    height: 44,
-    backgroundColor: "rgba(102, 204, 255, 0.08)",
+    top: rowHeight * 2,
+    width: '100%',
+    height: rowHeight,
+    backgroundColor: 'rgba(102, 204, 255, 0.08)',
   },
-  "picker-view-mask": {
-    position: "absolute",
+  'wheel-view-mask-top': {
+    position: 'absolute',
     left: 0,
     top: 0,
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: rowHeight * 2,
+  },
+  'wheel-view-mask-bottom': {
+    position: 'absolute',
+    left: 0,
+    top: rowHeight * 3,
+    width: '100%',
+    height: rowHeight * 2,
   },
 });
 

@@ -57,7 +57,7 @@ const TextItem = (props: TextItemProps) => {
         noMarginBottom && { marginBottom: 0 },
       ]}
     >
-      <View>
+      <View style={styles[`${prefixCls}-left`]}>
         <Node style={[styles[`${prefixCls}-label`], labelStyle]}>{label}</Node>
         <Node style={[styles[`${prefixCls}-description`], descriptionStyle]}>{description}</Node>
       </View>

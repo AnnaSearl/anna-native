@@ -58,14 +58,8 @@ export { default as DatePicker } from './date-picker';
 
 export { default as Countdown } from './countdown';
 
-export { default as Form } from './form';
-
 export { default as Input } from './input';
 
 export { default as ActionSheet } from './action-sheet';
 
-export { default as Wheel } from './wheel';
-
-export { default as WheelView } from './wheel-view';
-
-export { default as WheelPicker } from './wheel-picker';
+export { default as Result } from './result';

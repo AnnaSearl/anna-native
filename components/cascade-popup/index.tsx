@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, ViewStyle, TextStyle } from 'react-native';
 import Cascade, { valueType, OptionProps } from '../cascade';
 import Popup from '../popup';
 import FormValue from '../form-value';
@@ -17,11 +17,22 @@ export interface CascadePopupProps {
   textAlign?: 'left' | 'right';
   prompt?: (e: any) => string;
   onChange: (v: any, s: any) => void;
+  valueStyle?: ViewStyle | TextStyle;
+  placeholderStyle?: ViewStyle | TextStyle;
   [restProps: string]: any;
 }
 
 const CascadePopup: React.FC<CascadePopupProps> = props => {
-  const { value, children, disabled, placeholder, textAlign, onChange } = props;
+  const {
+    value,
+    children,
+    disabled,
+    placeholder,
+    textAlign,
+    onChange,
+    valueStyle,
+    placeholderStyle,
+  } = props;
 
   const [show, setShow] = useState(false);
 
@@ -48,7 +59,12 @@ const CascadePopup: React.FC<CascadePopupProps> = props => {
   return (
     <View style={styles[prefixCls]}>
       <Pressable style={styles[`${prefixCls}-form-item`]} onPress={handleTap}>
-        <FormValue textAlign={textAlign} placeholder={placeholder}>
+        <FormValue
+          textAlign={textAlign}
+          placeholder={placeholder}
+          style={valueStyle}
+          placeholderStyle={placeholderStyle}
+        >
           {children || value?.map(i => i.text).join(' ')}
         </FormValue>
       </Pressable>

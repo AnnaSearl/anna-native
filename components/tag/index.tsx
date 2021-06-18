@@ -6,19 +6,20 @@ import styles from './style';
 const prefixCls = 'tag';
 
 export interface TagProps {
-  look?: string;
-  size?: 'small' | 'medium' | 'large';
+  look?: 'blue' | 'green' | 'yellow' | 'red' | 'dark' | 'gray';
+  size?: 'small' | 'medium' | 'large' | 'xlarge';
   plain?: boolean;
   color?: string;
+  disabled?: boolean;
   style?: ViewStyle | ViewStyle[] | TextStyle | TextStyle[];
   children?: React.ReactNode;
-  onPress: (e: any) => void;
+  onPress?: (e: any) => void;
 }
 
 const Tag: React.FC<TagProps> & {
   CheckableTag?: (p: any) => React.ReactElement | null;
 } = props => {
-  const { size, look, plain, color, style, children, onPress } = props;
+  const { size, look, plain, color, disabled, style, children, onPress } = props;
 
   const tagStyle: any = [
     styles[prefixCls],
@@ -27,10 +28,18 @@ const Tag: React.FC<TagProps> & {
     styles[`${prefixCls}-${look}`],
     color ? { color, borderColor: color } : null,
     style,
+    disabled ? styles[`${prefixCls}-disabled`] : null, // disabled 要放在 style 之后，否则不会覆盖掉 CheckableTag 的样式
   ];
 
+  const handlePress = (e: any) => {
+    if (disabled) {
+      return;
+    }
+    onPress?.(e);
+  };
+
   return (
-    <Pressable onPress={onPress}>
+    <Pressable onPress={handlePress}>
       <Node style={tagStyle}>{children}</Node>
     </Pressable>
   );

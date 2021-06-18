@@ -1,13 +1,23 @@
 import React, { useState, useRef } from 'react';
 import { View, Pressable } from 'react-native';
 import Popup from '../popup';
-import PickerView from '../picker-view';
-import PickerViewColumn from '../picker-view-column';
+import WheelView from '../picker-view';
+import Wheel from '../picker-view-column';
 import SafeFilling from '../safe-filling';
 import FormValue from '../form-value';
 import styles from './style';
 
-const prefixCls = 'picker';
+const prefixCls = 'wheel-picker';
+
+const getInitialVal = (value: any, mult: boolean, rangeLength = 1) => {
+  if (mult) {
+    if (!Array.isArray(value)) {
+      return Array(rangeLength).fill(0);
+    }
+    return value;
+  }
+  return value || 0;
+};
 
 export interface PickerProps {
   value?: number | number[];
@@ -16,6 +26,7 @@ export interface PickerProps {
   disabled?: boolean;
   textAlign?: 'left' | 'right' | 'center';
   placeholder?: string;
+  rangeColumnsFlex?: number[];
   children?: React.ReactNode;
   onChange?: (v: number | number[], e?: any) => void;
   onStartShouldSetResponderCapture?: () => boolean;
@@ -28,15 +39,17 @@ const Picker: React.FC<PickerProps> = props => {
     rangeKey = 'text',
     textAlign,
     placeholder,
+    rangeColumnsFlex,
     disabled,
     children,
     onChange,
     onStartShouldSetResponderCapture,
   } = props;
 
-  const [open, setOpen] = useState(false);
+  const multiple = useRef(Array.isArray(range?.[0])).current;
+  const val = useRef<number | number[]>(getInitialVal(value, multiple, range?.length));
 
-  const val = useRef<number | number[]>(value < 0 ? 0 : value);
+  const [open, setOpen] = useState(false);
 
   const handlePress = () => {
     if (disabled) {
@@ -50,19 +63,14 @@ const Picker: React.FC<PickerProps> = props => {
     setOpen(false);
   };
 
-  const handleChangeColumn = (multiple: boolean, v: number, index?: number) => {
-    if (multiple) {
+  const handleChangeColumn = (mult: boolean, v: number, index?: number) => {
+    if (mult) {
       val.current = [...(Array.isArray(val.current) ? val.current : [val.current])];
       val.current[index as number] = v;
       return;
     }
     val.current = v;
   };
-
-  let multiple = false;
-  if (Array.isArray(range?.[0])) {
-    multiple = true;
-  }
 
   return (
     <View style={styles[prefixCls]}>
@@ -75,11 +83,14 @@ const Picker: React.FC<PickerProps> = props => {
         </FormValue>
       </Pressable>
       <Popup position="bottom" open={open} onClose={() => setOpen(false)}>
-        <PickerView onOK={handleOK} onCancel={() => setOpen(false)}>
+        <WheelView onOK={handleOK} onCancel={() => setOpen(false)}>
           {multiple ? (
             range?.map((columnData: any[], index: number) => (
-              <PickerViewColumn
+              <Wheel
                 key={index}
+                style={
+                  Array.isArray(rangeColumnsFlex) ? { flex: rangeColumnsFlex?.[index] } : undefined
+                }
                 value={(value as number[])[index]}
                 options={columnData}
                 optionsKey={rangeKey}
@@ -87,14 +98,14 @@ const Picker: React.FC<PickerProps> = props => {
               />
             ))
           ) : (
-            <PickerViewColumn
+            <Wheel
               value={value as number}
               options={range}
               optionsKey={rangeKey}
               onChange={v => handleChangeColumn(false, v)}
             />
           )}
-        </PickerView>
+        </WheelView>
         <SafeFilling bottom />
       </Popup>
     </View>

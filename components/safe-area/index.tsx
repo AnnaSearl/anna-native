@@ -28,7 +28,7 @@ const SafeArea: React.FC<SafeAreaProps> = props => {
     ...restProps
   } = props;
   return native ? (
-    <SafeAreaView {...restProps}>{children}</SafeAreaView>
+    <SafeAreaView {...props}>{children}</SafeAreaView>
   ) : (
     <View style={[styles.container, style]} {...restProps}>
       {topInset ? <SafeFilling style={topStyle} backgroundColor={topColor || '#FFFFFF'} /> : null}

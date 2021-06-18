@@ -1,8 +1,12 @@
+// @ts-ignore
+import { DeviceInfo, Dimensions } from 'react-native';
+import { IPHONE12_NORMAL, IPHONE12_MAX, IPHONE12_MINI } from '../_constants';
+
 export const twoDimensional = (
   data: any[],
   columns: number,
   span?: number | number[],
-  standard = 24
+  standard = 24,
 ): [any[], any[]] => {
   const two: any[] = [];
   const spanTwo: any[] = [];
@@ -13,7 +17,7 @@ export const twoDimensional = (
   let spanArray = [];
   if (span) {
     spanArray = new Array(data.length).fill(colSpan);
-    if (typeof span === "number") {
+    if (typeof span === 'number') {
       if (span > 0) {
         spanArray[0] = span;
       }
@@ -75,6 +79,14 @@ export const flat = (arr: any[]): any[] => {
   }, []);
 };
 
+export const isIPhoneX = () => {
+  const height = Dimensions.get('window').height;
+  if (height === IPHONE12_NORMAL || height === IPHONE12_MAX || height === IPHONE12_MINI) {
+    return true;
+  }
+  return DeviceInfo.isIPhoneX_deprecated;
+};
+
 export const deepClone = function (data: any): any {
   let cloneData: any = null;
   if (Array.isArray(data)) {
@@ -83,9 +95,9 @@ export const deepClone = function (data: any): any {
       const item = data[i];
       cloneData[i] = deepClone(item);
     }
-  } else if (typeof data === "object" && data !== null) {
+  } else if (typeof data === 'object' && data !== null) {
     cloneData = {};
-    Object.keys(data).forEach((key) => {
+    Object.keys(data).forEach(key => {
       const item = data[key];
       cloneData[key] = deepClone(item);
     });

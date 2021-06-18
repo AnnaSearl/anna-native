@@ -2,23 +2,32 @@ import * as React from 'react';
 import { TextInput, TextInputProps, View, Text } from 'react-native';
 import styles from './style';
 
-export interface InputProps {
+export interface InputProps extends TextInputProps {
   maxLength?: number;
   showCount?: boolean;
 }
 
-const Input: React.FC<TextInputProps & InputProps> & {
-  TextArea?: (p: TextInputProps) => React.ReactElement | null;
+const Input: React.FC<InputProps> & {
+  TextArea?: (p: TextAreaProps) => React.ReactElement | null;
 } = props => {
   return <TextInput placeholderTextColor="#9DA1AD" {...props} />;
 };
 
-const TextArea: React.FC<TextInputProps & InputProps> = props => {
-  const { value, maxLength, showCount } = props;
+export interface TextAreaProps extends InputProps {
+  rows?: number;
+}
+
+const TextArea: React.FC<TextAreaProps> = props => {
+  const { value, maxLength, showCount, rows = 3 } = props;
 
   return (
     <View>
-      <Input style={styles.textArea} multiline numberOfLines={3} {...props} />
+      <Input
+        style={[styles.textArea, { minHeight: 20 * rows }]}
+        multiline
+        numberOfLines={rows}
+        {...props}
+      />
       {showCount ? (
         <Text style={styles.count}>
           {value?.length || 0}/{maxLength || 0}

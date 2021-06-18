@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { View, TextInput, Text, Animated, Pressable, ViewStyle } from 'react-native';
+import { View, Text, Animated, Pressable, ViewStyle } from 'react-native';
 import Icon from '../icon';
+import ClearInput from '../clear-input';
+
 import { $fontColor3 } from '../style/theme';
 import styles from './style';
 
@@ -12,6 +14,9 @@ export interface SearchBarProps {
   showActionButton?: boolean;
   placeholder?: string;
   style?: ViewStyle;
+  containerStyle?: ViewStyle;
+  clearButtonMode?: string;
+  autoFocus?: boolean;
   onFocus?: (e: any) => void;
   onBlur?: (e: any) => void;
   onActionPress?: () => void;
@@ -26,6 +31,9 @@ const SearchBar: React.ForwardRefRenderFunction<any, SearchBarProps> = (props, r
     showActionButton,
     placeholder,
     style,
+    containerStyle,
+    clearButtonMode = 'while-editing',
+    autoFocus,
     onFocus,
     onBlur,
     onActionPress,
@@ -52,24 +60,26 @@ const SearchBar: React.ForwardRefRenderFunction<any, SearchBarProps> = (props, r
   }, [showActionButton]);
 
   return (
-    <View style={styles[prefixCls]}>
+    <View style={[styles[prefixCls], containerStyle]}>
       <View style={[styles[`${prefixCls}-input`], style]}>
         <View style={styles[`${prefixCls}-icon`]}>
-          <Icon name="line-search" size={16} color="#666" />
+          <Icon name="search" size={16} color="#666" />
         </View>
-        <TextInput
+        <ClearInput
           style={styles[`${prefixCls}-value`]}
           placeholder={placeholder}
+          autoFocus={autoFocus}
           onFocus={onFocus}
           onBlur={onBlur}
           onChangeText={onChangeText}
-          clearButtonMode="while-editing"
+          clearButtonMode={clearButtonMode}
           onSubmitEditing={onSubmitEditing}
           value={value}
           returnKeyType={returnKeyType}
           ref={ref}
           underlineColorAndroid={'transparent'}
           placeholderTextColor={$fontColor3}
+          clearBtnStyle={{ right: 20 }}
         />
       </View>
 

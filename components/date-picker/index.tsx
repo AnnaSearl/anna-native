@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import dayjs from 'dayjs';
-import WheelPicker from '../wheel-picker';
+import Picker from '../picker';
 
 const startYear = new Date().getFullYear();
 
@@ -190,7 +190,7 @@ const DatePicker: React.FC<DatePickerProps> = (props: DatePickerProps) => {
   );
 
   return (
-    <WheelPicker
+    <Picker
       value={pickerValue}
       onChange={handleChange}
       range={range}
@@ -199,7 +199,7 @@ const DatePicker: React.FC<DatePickerProps> = (props: DatePickerProps) => {
       {...restProps}
     >
       {children}
-    </WheelPicker>
+    </Picker>
   );
 };
 

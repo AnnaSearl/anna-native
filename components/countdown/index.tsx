@@ -5,10 +5,11 @@ import Node from '../node';
 export interface CountdownProps {
   timeStamp?: number | string;
   style?: ViewStyle;
+  onEnd?: Function;
 }
 
 const Countdown: React.FC<CountdownProps> = props => {
-  const { timeStamp, style } = props;
+  const { timeStamp, style, onEnd } = props;
 
   const intervalId = React.useRef<any>(null);
 
@@ -33,11 +34,17 @@ const Countdown: React.FC<CountdownProps> = props => {
           countDownStr = `${hour}:${min}:${sec}`;
           setCount(countDownStr);
         }, 1000);
+      } else {
+        // 如果没有时间,调用倒计时结束的方法
+        setTimeout(() => {
+          onEnd?.();
+        }, 1000);
       }
     }
 
     return () => {
       clearInterval(intervalId.current);
+      intervalId.current = null;
     };
   }, [timeStamp]);
 

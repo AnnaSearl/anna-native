@@ -2,12 +2,15 @@ import * as React from 'react';
 import { View, Text, StatusBar, TouchableOpacity, ViewStyle, Pressable } from 'react-native';
 import Node from '../node';
 import Icon from '../icon';
+import { isIPhoneX } from '../_util';
+import { STATUS_BAR_HEIGHT, TOP_SAFE_HEIGHT } from '../_constants';
 import styles from './style';
 
 const prefixCls = 'navigation-bar';
 
 export interface LeftButtonProps {
   color?: string;
+  style?: ViewStyle;
   children?: string | number;
   onPress?: (e?: any) => void;
 }
@@ -24,12 +27,12 @@ const leftTextStyle = {
   marginLeft: -4,
 };
 
-const LeftButton: React.FC<LeftButtonProps> = props => {
-  const { color, children, onPress } = props;
+export const LeftButton: React.FC<LeftButtonProps> = props => {
+  const { color, style, children, onPress } = props;
 
   return (
-    <TouchableOpacity style={leftStyle} onPress={onPress}>
-      <Icon name="line-return-48" size={24} color={color || '#000'} />
+    <TouchableOpacity style={[leftStyle, style]} onPress={onPress}>
+      <Icon name="back" size={24} color={color || '#000'} />
       <Text style={[leftTextStyle, { color }]}>{children}</Text>
     </TouchableOpacity>
   );
@@ -44,16 +47,22 @@ export interface NavigationBarProps {
   leftColor?: string;
   titleColor?: string;
   backgroundColor?: string;
+  opacity?: number;
   children?: React.ReactNode;
   previous?: any;
   navigation?: any;
-  look: 'light' | 'dark';
+  look?: 'light' | 'dark';
   showBackButton?: boolean;
+  absolute?: boolean;
+  numberOfLines?: number;
   onLeftPress?: (e?: any) => void;
   onRightPress?: (e?: any) => void;
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = props => {
+const NavigationBar: React.FC<NavigationBarProps> & {
+  config: NavigationBarConfigProps;
+  setDefaultConfig: (config: any) => void;
+} = props => {
   const {
     leftText,
     leftColor,
@@ -67,14 +76,18 @@ const NavigationBar: React.FC<NavigationBarProps> = props => {
     },
     titleColor,
     backgroundColor,
+    opacity,
     look,
     showBackButton,
+    absolute,
+    numberOfLines,
     children,
   } = props;
 
   let curBackgroundColor = backgroundColor;
   let curTitleColor = titleColor;
   let curLeftColor = leftColor;
+  let curOpacity = opacity;
   if (look === 'light') {
     curBackgroundColor = '#FFFFFF';
     curTitleColor = '#000';
@@ -90,8 +103,26 @@ const NavigationBar: React.FC<NavigationBarProps> = props => {
     );
   }
 
+  const absoluteTop = isIPhoneX() ? TOP_SAFE_HEIGHT : STATUS_BAR_HEIGHT;
+
+  const absoluteStyle = absolute
+    ? {
+        position: 'absolute',
+        top: absoluteTop,
+        left: 0,
+        right: 0,
+        zIndex: 1,
+      }
+    : null;
+
+  const navStyle = {
+    backgroundColor: curBackgroundColor,
+    opacity: curOpacity,
+    ...absoluteStyle,
+  };
+
   return (
-    <View style={[styles[prefixCls], { backgroundColor: curBackgroundColor }]}>
+    <View style={[styles[prefixCls], navStyle]}>
       {!statusBar.hidden ? (
         <View style={styles[`${prefixCls}-status`]}>
           <StatusBar {...statusBar} />
@@ -99,13 +130,30 @@ const NavigationBar: React.FC<NavigationBarProps> = props => {
       ) : null}
       <View style={styles[`${prefixCls}-content`]}>
         <Node style={styles[`${prefixCls}-left`]}>{leftNode}</Node>
-        <Node style={[styles[`${prefixCls}-center`], { color: curTitleColor }]}>{children}</Node>
+        <Node
+          style={[styles[`${prefixCls}-center`], { color: curTitleColor }]}
+          numberOfLines={numberOfLines}
+        >
+          {children}
+        </Node>
         <Pressable onPress={onRightPress}>
           <Node style={styles[`${prefixCls}-right`]}>{right}</Node>
         </Pressable>
       </View>
     </View>
   );
+};
+
+export interface NavigationBarConfigProps {
+  onLeftPress?: (e?: any) => void;
+}
+
+NavigationBar.config = {};
+
+NavigationBar.setDefaultConfig = ({ onLeftPress }) => {
+  if (onLeftPress) {
+    NavigationBar.config.onLeftPress = onLeftPress;
+  }
 };
 
 export default NavigationBar;

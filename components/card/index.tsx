@@ -7,13 +7,11 @@ const prefixCls = 'card';
 
 export interface CardProps {
   title?: React.ReactNode;
+  titleNumberOfLines?: number;
   titleSize?: 'small' | 'medium' | 'large';
+  headerBorder?: boolean;
   description?: React.ReactNode;
   extra?: React.ReactNode;
-  foot?: React.ReactNode;
-  cover?: React.ReactNode;
-  direction?: 'horizontal' | 'vertical';
-  shadow?: boolean;
   style?: ViewStyle;
   contentStyle?: React.CSSProperties;
   children?: React.ReactNode;
@@ -21,18 +19,31 @@ export interface CardProps {
 }
 
 const Card = (props: CardProps) => {
-  const { title, titleSize, description, extra, style, contentStyle, children, onPress } = props;
+  const {
+    title,
+    titleNumberOfLines,
+    titleSize,
+    headerBorder,
+    description,
+    extra,
+    style,
+    contentStyle,
+    children,
+    onPress,
+  } = props;
 
   const renderHead = () => {
     return title || description || extra ? (
-      <View style={[styles[`${prefixCls}-head`]]}>
-        <View>
+      <View style={[styles[`${prefixCls}-header`], headerBorder ? { paddingBottom: 10 } : null]}>
+        {headerBorder ? <View style={styles[`${prefixCls}-header-border`]} /> : null}
+        <View style={[styles[`${prefixCls}-header-left`]]}>
           {title ? (
             <Node
               style={[
                 styles[`${prefixCls}-title`],
-                { fontSize: titleSize === 'small' ? 13 : null },
+                titleSize === 'small' ? styles[`${prefixCls}-title-${titleSize}`] : null,
               ]}
+              numberOfLines={titleNumberOfLines}
             >
               {title}
             </Node>
@@ -43,9 +54,7 @@ const Card = (props: CardProps) => {
             </View>
           ) : null}
         </View>
-        <View style={styles[`${prefixCls}-extra`]}>
-          <Node>{extra}</Node>
-        </View>
+        <Node style={styles[`${prefixCls}-extra`]}>{extra}</Node>
       </View>
     ) : null;
   };

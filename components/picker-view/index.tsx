@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { View, Text, Pressable, ScrollView, ViewStyle } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Node from '../node';
 import styles from './style';
 
-const prefixCls = 'picker-view';
+const prefixCls = 'wheel-view';
 
 export interface PickerViewProps {
   title?: React.ReactNode;
   children?: React.ReactNode;
   onOK?: (e: any) => void;
   onCancel?: (e: any) => void;
-  contentStyle?: ViewStyle | null;
 }
 
 const PickerView: React.FC<PickerViewProps> = props => {
-  const { title, contentStyle, children, onOK, onCancel } = props;
+  const { title, children, onOK, onCancel } = props;
   return (
     <View style={styles[prefixCls]}>
       <View style={styles[`${prefixCls}-toolbar`]}>
@@ -26,10 +26,25 @@ const PickerView: React.FC<PickerViewProps> = props => {
           <Text style={styles[`${prefixCls}-confirm`]}>确定</Text>
         </Pressable>
       </View>
-      {/* 这里要对 ScrollView 设置 style 而不是 contentContainerStyle */}
-      <ScrollView showsVerticalScrollIndicator={false} style={styles[`${prefixCls}-container`]}>
-        <Node style={[styles[`${prefixCls}-columns`], contentStyle]}>{children}</Node>
-      </ScrollView>
+      <View>
+        <View style={styles[`${prefixCls}-overlay`]} pointerEvents="none">
+          <View style={[styles[`${prefixCls}-selected`]]} />
+          <LinearGradient
+            style={[styles[`${prefixCls}-mask-top`]]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            colors={['hsla(0, 0%, 100%, 0.9)', 'hsla(0, 0%, 100%, 0.4)']}
+          />
+          <LinearGradient
+            style={[styles[`${prefixCls}-mask-bottom`]]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            colors={['hsla(0, 0%, 100%, 0.4)', 'hsla(0, 0%, 100%, 0.9)']}
+          />
+        </View>
+
+        <View style={styles[`${prefixCls}-columns`]}>{children}</View>
+      </View>
     </View>
   );
 };

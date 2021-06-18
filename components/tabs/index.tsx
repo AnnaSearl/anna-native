@@ -8,7 +8,7 @@ import {
   Animated,
   useWindowDimensions,
 } from 'react-native';
-import { $fontColor } from '../style/theme';
+import { $brandColor } from '../style/theme';
 import Node from '../node';
 import styles from './style';
 
@@ -28,6 +28,10 @@ export interface TabProps {
   titleCursorWidth?: number;
   titleStyle?: TextStyle;
   titleActiveStyle?: TextStyle;
+  tabBarStyle?: ViewStyle;
+  hideCursor?: boolean;
+  renderTab?: (item?: TabTitleProps, index?: number) => React.ReactElement;
+  renderTitleCursor?: () => React.ReactElement;
   onTabClick?: (i: any) => void;
 }
 
@@ -87,6 +91,10 @@ const Tabs = (props: TabProps): React.ReactElement => {
     titleCursorWidth,
     titleStyle,
     titleActiveStyle,
+    tabBarStyle,
+    hideCursor,
+    renderTab,
+    renderTitleCursor,
     onTabClick,
     children,
   } = props;
@@ -131,9 +139,7 @@ const Tabs = (props: TabProps): React.ReactElement => {
     const currentTabTitle = tabTitleLayouts?.[index];
     const currentTabTitleCenterPoint = currentTabTitle?.x + currentTabTitle?.width / 2;
     const harfWindowWidth = windowWidth / 2;
-    header.current.scrollTo({
-      x: currentTabTitleCenterPoint - harfWindowWidth,
-    });
+    header.current.scrollTo({ x: currentTabTitleCenterPoint - harfWindowWidth });
   };
 
   const handleTabTitleLayout = (e: any, index: number) => {
@@ -153,7 +159,7 @@ const Tabs = (props: TabProps): React.ReactElement => {
         ref={ref => {
           header.current = ref;
         }}
-        style={styles[`${prefixCls}-plain`]}
+        style={[styles[`${prefixCls}-plain`], tabBarStyle]}
         contentContainerStyle={[titleFlexible ? { flex: 1 } : null]} // 注意，当 titleFlexible 为 true 时这里一定要设置 flex: 1 使 ScrollView 的 content 撑满
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -166,31 +172,37 @@ const Tabs = (props: TabProps): React.ReactElement => {
             onPress={e => handleTabClick(e, item, index)}
             onLayout={e => handleTabTitleLayout(e, index)}
           >
-            <Node
-              style={[
-                styles[`${prefixCls}-plain-item-text`],
-                titleStyle,
-                selected === index
-                  ? {
-                      fontWeight: '700',
-                      color: $fontColor,
-                      ...titleActiveStyle,
-                    }
-                  : null,
-              ]}
-            >
-              {item.tab}
-            </Node>
+            {renderTab ? (
+              renderTab(item, index)
+            ) : (
+              <Node
+                style={[
+                  styles[`${prefixCls}-plain-item-text`],
+                  titleStyle,
+                  selected === index
+                    ? { fontWeight: '700', color: $brandColor, ...titleActiveStyle }
+                    : null,
+                ]}
+              >
+                {item.tab}
+              </Node>
+            )}
           </Pressable>
         ))}
-        <Animated.View
-          style={[
-            styles[`${prefixCls}-plain-active`],
-            {
-              transform: [{ translateX: activeX }, { scaleX: titleCursorWidth || activeWidth }],
-            },
-          ]}
-        />
+        {!hideCursor ? (
+          renderTitleCursor ? (
+            renderTitleCursor()
+          ) : (
+            <Animated.View
+              style={[
+                styles[`${prefixCls}-plain-active`],
+                {
+                  transform: [{ translateX: activeX }, { scaleX: titleCursorWidth || activeWidth }],
+                },
+              ]}
+            />
+          )
+        ) : null}
       </ScrollView>
     );
   };

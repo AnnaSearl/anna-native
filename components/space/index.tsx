@@ -5,34 +5,49 @@ import styles from './style';
 
 const prefixCls = 'space';
 
+type SizeType = string | number;
 export interface SpaceProps {
-  size?: string | number;
+  size?: SizeType | SizeType[];
   direction?: string;
   align?: string;
   justify?: string;
+  wrap?: boolean;
   style?: ViewStyle;
   className?: string;
   children?: React.ReactNode;
 }
 
-const renderItems = (children: React.ReactNode, size?: string | number, direction?: string) => {
+const renderItems = (
+  children: React.ReactNode,
+  size?: SizeType | SizeType[],
+  direction?: string,
+) => {
   let itemStyle: any;
-  if (typeof size === 'number') {
-    itemStyle =
-      direction === 'vertical'
-        ? {
-            marginBottom: size,
-          }
-        : {
-            marginRight: size,
-          };
+  if (Array.isArray(size)) {
+    if (typeof size[0] === 'number' && typeof size[1] === 'number') {
+      if (direction === 'vertical') {
+        itemStyle = { marginBottom: size[0] };
+      } else {
+        itemStyle = { marginRight: size[0], marginBottom: size[1] };
+      }
+    }
+  } else {
+    if (typeof size === 'string' && size) {
+      itemStyle = styles[`${prefixCls}-${direction}-${size}`];
+    }
+    if (typeof size === 'number') {
+      if (direction === 'vertical') {
+        itemStyle = { marginBottom: size };
+      } else {
+        itemStyle = { marginRight: size };
+      }
+    }
   }
   const items = React.Children.toArray(children).filter(
     child => child !== undefined && child !== null,
   );
   const itemNodes = items.map((child, index) => {
     const childStyle = [
-      typeof size === 'string' && size && styles[`${prefixCls}-${direction}-${size}`],
       itemStyle,
       index === items.length - 1 &&
         (direction === 'horizontal' ? { marginRight: 0 } : { marginBottom: 0 }),
@@ -53,6 +68,7 @@ const Space: React.FC<SpaceProps> = (props: SpaceProps) => {
     direction = 'horizontal',
     align = direction === 'horizontal' ? 'center' : undefined,
     justify,
+    wrap,
     style,
     children,
   } = props;
@@ -61,6 +77,7 @@ const Space: React.FC<SpaceProps> = (props: SpaceProps) => {
     styles[prefixCls],
     styles[`${prefixCls}-align-${align}`],
     { justifyContent: justify },
+    direction === 'horizontal' && wrap ? { flexWrap: 'wrap' } : null,
     style,
   ];
 

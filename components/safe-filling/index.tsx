@@ -1,6 +1,7 @@
 import * as React from 'react';
-// @ts-ignore
-import { View, DeviceInfo, ViewStyle } from 'react-native';
+import { View, ViewStyle } from 'react-native';
+import { isIPhoneX } from '../_util';
+import { TOP_SAFE_HEIGHT, BOTTOM_SAFE_HEIGHT } from '../_constants';
 
 export interface SafeFillingProps {
   bottom?: boolean;
@@ -10,8 +11,11 @@ export interface SafeFillingProps {
 
 const SafeFilling: React.FC<SafeFillingProps> = props => {
   const { bottom, backgroundColor, style } = props;
-  const safeFillStyle = { height: bottom ? 34 : 44, backgroundColor: backgroundColor };
-  return DeviceInfo.isIPhoneX_deprecated ? <View style={[safeFillStyle, style]} /> : null;
+  const safeFillStyle = {
+    height: bottom ? BOTTOM_SAFE_HEIGHT : TOP_SAFE_HEIGHT,
+    backgroundColor: backgroundColor,
+  };
+  return isIPhoneX() ? <View style={[safeFillStyle, style]} /> : null;
 };
 
 export default SafeFilling;

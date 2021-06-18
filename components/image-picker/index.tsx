@@ -1,16 +1,24 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
-import RNImagePicker from 'react-native-image-picker';
+import { launchCamera, launchImageLibrary, CameraOptions } from 'react-native-image-picker';
 import Icon from '../icon';
+import ActionSheet, { ActionSheetAction } from '../action-sheet';
 import { deepClone } from '../_util';
 import styles from './style';
 
 const prefixCls = 'image-picker';
 
+const actions = [
+  { text: '相机', value: 0 },
+  { text: '从相册中选择', value: 1 },
+];
+
 export interface ImagePickerProps {
+  action?: 'camera' | 'photos' | 'mix';
   files?: string[];
   multiple?: boolean;
   multipleCount?: number;
+  compress?: boolean; // 是否压缩图片
   sizeType?: string[];
   sourceType?: string[];
   deletable?: boolean;
@@ -18,35 +26,93 @@ export interface ImagePickerProps {
   maxCount?: number;
   children?: React.ReactNode;
   onChange?: (e: string[]) => void;
+  onAddBefore?: () => boolean | undefined; //选择照片之前事件
 }
 
 const ImagePicker: React.FC<ImagePickerProps> = props => {
-  const { files = [], onChange, maxCount } = props;
+  const { action = 'mix', files = [], onChange, onAddBefore, maxCount, compress } = props;
 
-  const handleAddFile = () => {
-    const options = {
-      title: '',
-      takePhotoButtonTitle: '拍照',
-      chooseFromLibraryButtonTitle: '从相册中选取',
-      cancelButtonTitle: '取消',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
+  const [open, setOpen] = useState(false);
+
+  let options: CameraOptions = {
+    mediaType: 'photo',
+  };
+  if (compress) {
+    options = {
+      ...options,
+      maxWidth: 1500,
+      maxHeight: 1500,
     };
-    (RNImagePicker as any).showImagePicker(options, (response: any) => {
-      console.log('Response = ', response);
+  }
 
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        const targetFiles = response.uri;
+  const handldeAddBefore = () => {
+    if (onAddBefore) {
+      const canContinue = onAddBefore?.();
+      return canContinue;
+    }
+    return true;
+  };
+
+  const handleCamera = () => {
+    const canContinue = handldeAddBefore();
+    if (!canContinue) {
+      return;
+    }
+    launchCamera(options, response => {
+      // @ts-ignore
+      if (response?.assets?.length) {
+        // @ts-ignore
+        const targetFiles = response?.assets?.map(i => i?.uri || '');
         const newFiles = files.concat(targetFiles);
         onChange?.(newFiles);
+        setOpen(false);
       }
     });
+  };
+
+  const handlePhotos = () => {
+    const canContinue = handldeAddBefore();
+    if (!canContinue) {
+      return;
+    }
+    launchImageLibrary(options, response => {
+      // @ts-ignore
+      if (response?.assets?.length) {
+        // @ts-ignore
+        const targetFiles = response?.assets?.map(i => i?.uri || '');
+        const newFiles = files.concat(targetFiles);
+        onChange?.(newFiles);
+        setOpen(false);
+      }
+    });
+  };
+
+  const handleAddFile = () => {
+    if (action === 'mix') {
+      setOpen(true);
+      return;
+    }
+
+    if (action === 'camera') {
+      handleCamera();
+    }
+
+    if (action === 'photos') {
+      handlePhotos();
+    }
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  const handleChange = (act: ActionSheetAction) => {
+    if (act?.value === 0) {
+      handleCamera();
+    }
+    if (act?.value === 1) {
+      handlePhotos();
+    }
   };
 
   const handleDeleteFile = (e: any, index: number) => {
@@ -66,15 +132,30 @@ const ImagePicker: React.FC<ImagePickerProps> = props => {
             style={styles[`${prefixCls}-delete`]}
             onPress={e => handleDeleteFile(e, index)}
           >
-            <Icon name="line-error-32" color="#FDFFFD" size={12} />
+            <Icon name="close" color="#FDFFFD" size={12} />
           </Pressable>
         </View>
       ))}
+
       {!maxCount || files.length < maxCount ? (
-        <Pressable style={styles[`${prefixCls}-btn`]} onPress={handleAddFile}>
-          <Text style={styles[`${prefixCls}-text`]}>+</Text>
+        <Pressable style={styles[`${prefixCls}-add`]} onPress={handleAddFile}>
+          <View style={styles[`${prefixCls}-add-icon`]}>
+            <Icon name="line-photo" color="#BABEC6" size={24} />
+          </View>
+          <Text style={styles[`${prefixCls}-add-text`]}>
+            {action === 'camera' ? '拍照上传' : '上传图片'}
+          </Text>
         </Pressable>
       ) : null}
+
+      <ActionSheet
+        cover
+        cancelText="取消"
+        open={open}
+        actions={actions}
+        onCancel={handleCancel}
+        onChange={handleChange}
+      />
     </View>
   );
 };

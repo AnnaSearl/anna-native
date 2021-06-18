@@ -1,19 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create<any>({
-  'picker-view-column': {
-    overflow: 'hidden',
-    padding: 5,
+  wheel: {
     flex: 1,
   },
-  'picker-view-column-item': {
-    height: 44,
-    paddingHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  'wheel-content': {
+    transform: [{ translateY: 88 }],
   },
-  'picker-view-column-item-text': {},
+  'wheel-item': {
+    height: 44,
+  },
+  'wheel-item-text': {
+    color: '#000',
+    lineHeight: 44,
+    textAlign: 'center',
+  },
 });
 
 export default styles;
