@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $light6, $brandColor, $lightBase } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   selector: {
@@ -7,7 +7,7 @@ const styles = StyleSheet.create<any>({
   },
   'selector-parent': {
     width: 140,
-    backgroundColor: $light6,
+    backgroundColor: Theme.$light6,
   },
   'selector-children': {
     flex: 1,
@@ -22,9 +22,9 @@ const styles = StyleSheet.create<any>({
     color: '#666',
   },
   'selector-active': {
-    color: $brandColor,
+    color: Theme.$brandColor,
     fontWeight: '500',
-    backgroundColor: $lightBase,
+    backgroundColor: Theme.$lightBase,
   },
 });
 

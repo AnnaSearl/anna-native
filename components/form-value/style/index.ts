@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
-import { $fontColor, $fontColor3 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   'form-value': {
     fontSize: 14,
-    color: $fontColor,
+    color: Theme.$fontColor,
   },
   'form-value-placeholder': {
     fontSize: 14,
-    color: $fontColor3,
+    color: Theme.$fontColor3,
   },
 });
 

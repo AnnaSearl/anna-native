@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $light1, $redColor, $fontColor1, $fontColor3 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   cell: {
@@ -8,14 +8,14 @@ const styles = StyleSheet.create<any>({
     paddingHorizontal: 10,
     paddingVertical: 10,
     minHeight: 44,
-    backgroundColor: $light1,
+    backgroundColor: Theme.$light1,
   },
   'cell-horizontal': {
     flexDirection: 'row',
     alignItems: 'center',
   },
   'cell-required': {
-    color: $redColor,
+    color: Theme.$redColor,
     marginRight: 2,
   },
   'cell-left': {
@@ -31,11 +31,11 @@ const styles = StyleSheet.create<any>({
     marginRight: 20,
   },
   'cell-label-text': {
-    color: $fontColor1,
+    color: Theme.$fontColor1,
     fontWeight: '500',
   },
   'cell-label-description': {
-    color: $fontColor3,
+    color: Theme.$fontColor3,
   },
   'cell-right': {
     flex: 1,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create<any>({
   },
   'cell-value': {
     flex: 1,
-    color: $fontColor3,
+    color: Theme.$fontColor3,
   },
   'cell-value-left': {
     textAlign: 'left',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create<any>({
     alignItems: 'center',
   },
   'cell-vertical-value': {
-    color: $fontColor3,
+    color: Theme.$fontColor3,
   },
 });
 

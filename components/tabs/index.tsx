@@ -8,7 +8,7 @@ import {
   Animated,
   useWindowDimensions,
 } from 'react-native';
-import { $brandColor } from '../style/theme';
+import Theme from '../style/theme';
 import Node from '../node';
 import styles from './style';
 
@@ -180,7 +180,7 @@ const Tabs = (props: TabProps): React.ReactElement => {
                   styles[`${prefixCls}-plain-item-text`],
                   titleStyle,
                   selected === index
-                    ? { fontWeight: '700', color: $brandColor, ...titleActiveStyle }
+                    ? { fontWeight: '700', color: Theme.$brandColor, ...titleActiveStyle }
                     : null,
                 ]}
               >

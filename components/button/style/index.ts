@@ -1,18 +1,12 @@
 import { StyleSheet } from 'react-native';
-import {
-  $btnDefaultBg,
-  $brandColor,
-  $brandSecondaryColor,
-  $light1,
-  $fontColor1,
-} from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   btn: {
     position: 'relative',
     paddingHorizontal: 16,
     borderRadius: 32,
-    backgroundColor: $btnDefaultBg,
+    backgroundColor: Theme.$btnDefaultBg,
     overflow: 'hidden',
   },
   'btn-text': {
@@ -71,38 +65,38 @@ const styles = StyleSheet.create<any>({
   'btn-top-border-patch': {
     position: 'absolute',
     height: 0.5,
-    backgroundColor: $brandColor,
+    backgroundColor: Theme.$brandColor,
     top: -0.5,
     left: 0,
     right: 0,
   },
   'btn-primary': {
-    backgroundColor: $brandColor,
+    backgroundColor: Theme.$brandColor,
   },
   'btn-primary-text': {
-    color: $light1,
+    color: Theme.$light1,
   },
   'btn-plain': {
     borderColor: '#8D93A1',
     borderWidth: 0.5,
-    backgroundColor: $light1,
+    backgroundColor: Theme.$light1,
   },
   'btn-plain-text': {
-    color: $fontColor1,
+    color: Theme.$fontColor1,
   },
   'btn-plain-primary': {
-    borderColor: $brandColor,
+    borderColor: Theme.$brandColor,
     borderWidth: 0.5,
-    backgroundColor: $light1,
+    backgroundColor: Theme.$light1,
   },
   'btn-plain-primary-text': {
-    color: $brandColor,
+    color: Theme.$brandColor,
   },
   'btn-secondary': {
-    backgroundColor: $brandSecondaryColor,
+    backgroundColor: Theme.$brandSecondaryColor,
   },
   'btn-secondary-text': {
-    color: $brandColor,
+    color: Theme.$brandColor,
   },
   'btn-disabled': {
     borderColor: '#E1E2E6',

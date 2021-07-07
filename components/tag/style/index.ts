@@ -1,12 +1,5 @@
 import { StyleSheet } from 'react-native';
-import {
-  $brandColor,
-  $light1,
-  $light6,
-  $fontColor,
-  $brandSecondaryColor,
-  $fontColor2,
-} from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   tag: {
@@ -22,8 +15,8 @@ const styles = StyleSheet.create<any>({
   },
   'tag-plain': {
     borderWidth: 0.5,
-    borderColor: $fontColor2,
-    color: $fontColor2,
+    borderColor: Theme.$fontColor2,
+    color: Theme.$fontColor2,
     lineHeight: 19,
     backgroundColor: 'transparent',
   },
@@ -39,7 +32,7 @@ const styles = StyleSheet.create<any>({
   },
   'tag-blue': {
     color: '#1467FF',
-    backgroundColor: $brandSecondaryColor,
+    backgroundColor: Theme.$brandSecondaryColor,
   },
   'tag-green': {
     color: '#00B94F',
@@ -65,8 +58,8 @@ const styles = StyleSheet.create<any>({
     height: 32,
     lineHeight: 31,
     borderWidth: 0.5,
-    borderColor: $light6,
-    color: $fontColor,
+    borderColor: Theme.$light6,
+    color: Theme.$fontColor,
     fontSize: 12,
     borderRadius: 4,
     paddingHorizontal: 12,
@@ -75,13 +68,13 @@ const styles = StyleSheet.create<any>({
     height: 32,
     lineHeight: 31,
     borderWidth: 0.5,
-    borderColor: $brandColor,
-    backgroundColor: $light1,
-    color: $brandColor,
+    borderColor: Theme.$brandColor,
+    backgroundColor: Theme.$light1,
+    color: Theme.$brandColor,
   },
   'tag-disabled': {
     color: '#D7D8DB',
-    backgroundColor: $light6,
+    backgroundColor: Theme.$light6,
   },
 });
 

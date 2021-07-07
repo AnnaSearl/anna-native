@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { $fontColor2, $fontColor3, $light2 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   ling: {
     zIndex: 1010,
-    backgroundColor: $light2,
+    backgroundColor: Theme.$light2,
     overflow: 'hidden',
     boxShadow: '0px 2px 20px 0px #eaecee',
     transition: 'all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)',
@@ -28,10 +28,10 @@ const styles = StyleSheet.create<any>({
     fontWeight: 500,
   },
   'ling-title': {
-    color: $fontColor2,
+    color: Theme.$fontColor2,
   },
   'ling-content': {
-    color: $fontColor3,
+    color: Theme.$fontColor3,
     marginTop: 5,
   },
   'ling-icon': {

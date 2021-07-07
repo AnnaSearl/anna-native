@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $fontColor } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   card: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create<any>({
     marginTop: 10,
   },
   'card-extra': {
-    color: $fontColor,
+    color: Theme.$fontColor,
     fontSize: 13,
     flexDirection: 'row',
     justifyContent: 'flex-end',

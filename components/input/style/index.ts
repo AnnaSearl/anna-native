@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $fontColor3 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   textArea: {
@@ -7,7 +7,7 @@ const styles = StyleSheet.create<any>({
   },
   count: {
     position: 'absolute',
-    color: $fontColor3,
+    color: Theme.$fontColor3,
     fontSize: 12,
     lineHeight: 16.5,
     right: 0,

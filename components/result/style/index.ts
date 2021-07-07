@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $fontColor, $fontColor2 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   result: {
@@ -18,14 +18,14 @@ const styles = StyleSheet.create<any>({
   },
   'result-title': {
     textAlign: 'center',
-    color: $fontColor,
+    color: Theme.$fontColor,
     fontSize: 20,
     fontWeight: '600',
     lineHeight: 28,
   },
   'result-subTitle': {
     textAlign: 'center',
-    color: $fontColor2,
+    color: Theme.$fontColor2,
     fontSize: 13,
     lineHeight: 18.5,
     marginTop: 7.5,

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $fontColor, $fontColor2, $fontColor3, $light1, $brandColor } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const defaultColor = '#E1E4EB';
 
@@ -22,7 +22,7 @@ const styles = StyleSheet.create<any>({
   'steps-step-circle': {
     width: 8,
     height: 8,
-    backgroundColor: $brandColor,
+    backgroundColor: Theme.$brandColor,
     borderRadius: 8,
   },
   'steps-step-line-top': {
@@ -30,25 +30,25 @@ const styles = StyleSheet.create<any>({
     width: 1,
     top: -10, // steps-step 的 marginBottom 的 值
     bottom: '50%',
-    backgroundColor: $brandColor,
+    backgroundColor: Theme.$brandColor,
   },
   'steps-step-line-bottom': {
     position: 'absolute',
     width: 1,
     top: '50%',
     bottom: 0,
-    backgroundColor: $brandColor,
+    backgroundColor: Theme.$brandColor,
   },
   'steps-step-current': {
     width: 18,
     height: 18,
     borderRadius: 18,
-    backgroundColor: $light1,
+    backgroundColor: Theme.$light1,
   },
   'steps-step-content': {
     flexGrow: 1,
     padding: 10,
-    backgroundColor: $light1,
+    backgroundColor: Theme.$light1,
     borderRadius: 5,
   },
   'steps-step-header': {
@@ -56,16 +56,16 @@ const styles = StyleSheet.create<any>({
     justifyContent: 'space-between',
   },
   'steps-step-title': {
-    color: $fontColor,
+    color: Theme.$fontColor,
     fontSize: 14,
     marginBottom: 5,
   },
   'steps-step-extra': {
-    color: $fontColor3,
+    color: Theme.$fontColor3,
     fontSize: 12,
   },
   'steps-step-description': {
-    color: $fontColor2,
+    color: Theme.$fontColor2,
     fontSize: 12,
   },
   'steps-arrow-step': {
@@ -73,13 +73,13 @@ const styles = StyleSheet.create<any>({
     height: 28.5,
     lineHeight: 28.5,
     textAlign: 'center',
-    color: $fontColor2,
+    color: Theme.$fontColor2,
     fontSize: 13,
     marginLeft: 10,
   },
   'steps-arrow-step-active': {
-    backgroundColor: $brandColor,
-    color: $light1,
+    backgroundColor: Theme.$brandColor,
+    color: Theme.$light1,
   },
   'steps-arrow-step-head': {
     position: 'absolute',
@@ -95,7 +95,7 @@ const styles = StyleSheet.create<any>({
     borderRightColor: 'transparent',
   },
   'steps-arrow-step-head-active': {
-    borderColor: $brandColor,
+    borderColor: Theme.$brandColor,
   },
   'steps-arrow-step-tail': {
     position: 'absolute',
@@ -110,8 +110,8 @@ const styles = StyleSheet.create<any>({
     borderBottomColor: defaultColor,
   },
   'steps-arrow-step-tail-active': {
-    borderTopColor: $brandColor,
-    borderBottomColor: $brandColor,
+    borderTopColor: Theme.$brandColor,
+    borderBottomColor: Theme.$brandColor,
   },
 });
 

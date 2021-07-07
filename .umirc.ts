@@ -1,5 +1,6 @@
 import { defineConfig } from 'dumi';
 import path from 'path';
+import { setTheme } from './components/style/theme';
 
 process.env.BABEL_ENV = 'dumi';
 
@@ -30,6 +31,7 @@ export default defineConfig({
   },
   chainWebpack(memo, { env, webpack, createCSSRule }) {
     // jsx 内联样式 px2rem
+    setTheme({ $brandColor: '#FFFFFF' });
   },
   styles: [
     `

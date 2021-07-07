@@ -4,7 +4,7 @@ import Popup from '../popup';
 import Icon from '../icon';
 import Node from '../node';
 import SafeFilling from '../safe-filling';
-import { $light1 } from '../style/theme';
+import Theme from '../style/theme';
 import styles from './style';
 
 const prefixCls = 'action-sheet';
@@ -144,7 +144,7 @@ const ActionSheet: React.FC<ActionSheetProps> = props => {
           </View>
           <Pressable onPress={handleCancel}>
             <Node style={styles[`${prefixCls}-cancel`]}>{cancelText}</Node>
-            <SafeFilling bottom backgroundColor={$light1} />
+            <SafeFilling bottom backgroundColor={Theme.$light1} />
           </Pressable>
         </View>
       </Popup>

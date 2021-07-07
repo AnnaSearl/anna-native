@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $light4, $light5, $light1, $dangerColor } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   'action-sheet': {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create<any>({
   },
   'action-sheet-menu': {
     paddingBottom: 8,
-    backgroundColor: $light5,
+    backgroundColor: Theme.$light5,
   },
   'action-sheet-action': {
     position: 'relative',
@@ -31,15 +31,15 @@ const styles = StyleSheet.create<any>({
     minHeight: 56,
     lineHeight: 56,
     textAlign: 'center',
-    backgroundColor: $light1,
+    backgroundColor: Theme.$light1,
     fontSize: 17,
   },
   'action-sheet-action-destructive': {
-    color: $dangerColor,
+    color: Theme.$dangerColor,
   },
   'action-sheet-grid': {
     position: 'relative',
-    backgroundColor: $light1,
+    backgroundColor: Theme.$light1,
   },
   'action-sheet-grid-wrapper': {
     display: 'flex',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create<any>({
     height: 53,
     width: 53,
     borderRadius: 8,
-    backgroundColor: $light4,
+    backgroundColor: Theme.$light4,
     overflow: 'hidden',
     fontWeight: '500',
     fontSize: 16,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create<any>({
     height: 56,
     lineHeight: 56,
     textAlign: 'center',
-    backgroundColor: $light1,
+    backgroundColor: Theme.$light1,
     fontSize: 17,
   },
 });

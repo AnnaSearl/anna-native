@@ -2,8 +2,7 @@ import * as React from 'react';
 import { View, Text, Animated, Pressable, ViewStyle } from 'react-native';
 import Icon from '../icon';
 import ClearInput from '../clear-input';
-
-import { $fontColor3 } from '../style/theme';
+import Theme from '../style/theme';
 import styles from './style';
 
 const prefixCls = 'search-bar';
@@ -78,7 +77,7 @@ const SearchBar: React.ForwardRefRenderFunction<any, SearchBarProps> = (props, r
           returnKeyType={returnKeyType}
           ref={ref}
           underlineColorAndroid={'transparent'}
-          placeholderTextColor={$fontColor3}
+          placeholderTextColor={Theme.$fontColor3}
           clearBtnStyle={{ right: 20 }}
         />
       </View>

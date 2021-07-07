@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $brandColor } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const rowHeight = 44;
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create<any>({
   },
   'wheel-view-confirm': {
     paddingHorizontal: 12,
-    color: $brandColor,
+    color: Theme.$brandColor,
     height: rowHeight,
     lineHeight: rowHeight,
     fontWeight: '500',

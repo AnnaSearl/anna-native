@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $fontColor, $fontColor2, $fontColor3 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   'text-item': {
@@ -14,17 +14,17 @@ const styles = StyleSheet.create<any>({
   },
   'text-item-label': {
     fontSize: 13,
-    color: $fontColor2,
+    color: Theme.$fontColor2,
     lineHeight: 18.5,
   },
   'text-item-description': {
     fontSize: 13,
-    color: $fontColor3,
+    color: Theme.$fontColor3,
     lineHeight: 18.5,
   },
   'text-item-value': {
     fontSize: 13,
-    color: $fontColor,
+    color: Theme.$fontColor,
     lineHeight: 18.5,
     flexDirection: 'row',
     alignItems: 'center',

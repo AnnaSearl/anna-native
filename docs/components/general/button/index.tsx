@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button } from 'anna-native';
+import { Button, setTheme } from 'anna-native';
 
 const rowStyle = {
   flexDirection: 'row',
@@ -9,11 +9,13 @@ const rowStyle = {
   backgroundColor: '#FFFFFF',
 };
 
+// setTheme({ $brandColor: '#FFFFFF' });
+
 export default () => {
   return (
     <>
       <View style={rowStyle}>
-        <Button>Default Button</Button>
+        <Button onPress={() => {}}>Default Button</Button>
         <Button type="primary">Primary Button</Button>
       </View>
 

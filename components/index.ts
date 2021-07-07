@@ -63,3 +63,5 @@ export { default as Input } from './input';
 export { default as ActionSheet } from './action-sheet';
 
 export { default as Result } from './result';
+
+export * from './theme';

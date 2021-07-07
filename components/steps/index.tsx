@@ -4,7 +4,7 @@ import Node from '../node';
 import Icon from '../icon';
 import Row from '../row';
 import Col from '../col';
-import { $brandColor } from '../style/theme';
+import Theme from '../style/theme';
 
 import styles from './style';
 
@@ -51,7 +51,7 @@ const Steps = (props: StepsProps): React.ReactElement => {
               )}
               {index === 0 ? (
                 <View style={styles[`${prefixCls}-step-current`]}>
-                  <Icon name="iconfill-select" size={18} color={$brandColor} />
+                  <Icon name="iconfill-select" size={18} color={Theme.$brandColor} />
                 </View>
               ) : (
                 <View style={styles[`${prefixCls}-step-circle`]} />

@@ -1,8 +1,8 @@
-import { $light8 } from './theme';
+import Theme from './theme';
 
 export const pageStyle = {
   flex: 1,
   paddingHorizontal: 15,
   paddingVertical: 10,
-  backgroundColor: $light8,
+  backgroundColor: Theme.$light8,
 };

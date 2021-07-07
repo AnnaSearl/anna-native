@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $light5, $gray4, $fontColor3 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   'image-picker': {
@@ -25,13 +25,13 @@ const styles = StyleSheet.create<any>({
   'image-picker-image': {
     height: 85,
     width: 85,
-    backgroundColor: $gray4,
+    backgroundColor: Theme.$gray4,
     borderRadius: 5,
   },
   'image-picker-add': {
     height: 85,
     width: 85,
-    backgroundColor: $light5,
+    backgroundColor: Theme.$light5,
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create<any>({
     textAlign: 'center',
     lineHeight: 16.5,
     fontSize: 12,
-    color: $fontColor3,
+    color: Theme.$fontColor3,
   },
 });
 

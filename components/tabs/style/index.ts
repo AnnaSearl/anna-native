@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $brandColor, $fontColor3 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   tabs: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create<any>({
   },
   'tabs-plain-item-text': {
     fontSize: 13,
-    color: $fontColor3,
+    color: Theme.$fontColor3,
     height: 40,
     lineHeight: 40,
     textAlign: 'center',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create<any>({
     height: 2,
     left: 0,
     bottom: 0,
-    backgroundColor: $brandColor,
+    backgroundColor: Theme.$brandColor,
   },
   'tabs-container': {
     color: '#999',

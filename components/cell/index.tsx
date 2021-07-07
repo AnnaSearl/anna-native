@@ -3,7 +3,7 @@ import { View, Text, ViewStyle, Pressable, TextStyle } from 'react-native';
 import Node from '../node';
 import Icon from '../icon';
 import styles from './style';
-import { $fontColor3 } from '../style/theme';
+import Theme from '../style/theme';
 
 const prefixCls = 'cell';
 
@@ -101,7 +101,7 @@ const Cell = (props: CellProps) => {
         {extra ? <Node style={styles[`${prefixCls}-extra`]}>{extra}</Node> : null}
         {arrow ? (
           <View style={{ marginLeft: 3 }}>
-            <Icon name="iconline-return-24" size={12} color={$fontColor3} />
+            <Icon name="iconline-return-24" size={12} color={Theme.$fontColor3} />
           </View>
         ) : null}
       </View>

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { $fontColor3 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const styles = StyleSheet.create<any>({
   content: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create<any>({
   },
   input: {},
   icon: {
-    color: $fontColor3,
+    color: Theme.$fontColor3,
     fontSize: 12,
   },
 });

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Pressable, ViewStyle, TextStyle } from 'react-native';
 import Node from '../node';
+import { withTheme } from '../theme';
 import styles from './style';
 
 const prefixCls = 'tag';
@@ -12,7 +13,7 @@ export interface TagProps {
   color?: string;
   disabled?: boolean;
   style?: ViewStyle | ViewStyle[] | TextStyle | TextStyle[];
-  children?: React.ReactNode;
+  theme: AnnaNative.Theme;
   onPress?: (e: any) => void;
 }
 
@@ -52,7 +53,10 @@ export interface CheckableTagProps extends TagProps {
 }
 
 const CheckableTag: React.FC<CheckableTagProps> = props => {
-  const { checked, style, children, onChange } = props;
+  const { theme, checked, style, children, onChange } = props;
+
+  const { colors } = theme;
+  const { primary } = colors;
 
   const handlePress = () => {
     onChange?.(!checked);
@@ -63,7 +67,9 @@ const CheckableTag: React.FC<CheckableTagProps> = props => {
       {...props}
       style={[
         styles[`${prefixCls}-checkable-default`],
-        checked ? styles[`${prefixCls}-checkable-secondary`] : null,
+        checked
+          ? { ...styles[`${prefixCls}-checkable-secondary`], backgroundColor: primary }
+          : null,
         style,
       ]}
       onPress={handlePress}
@@ -73,6 +79,6 @@ const CheckableTag: React.FC<CheckableTagProps> = props => {
   );
 };
 
-Tag.CheckableTag = CheckableTag;
+Tag.CheckableTag = withTheme(CheckableTag);
 
-export default Tag;
+export default withTheme(Tag);

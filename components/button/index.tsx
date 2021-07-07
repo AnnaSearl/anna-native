@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { TouchableOpacity, ViewStyle, TextStyle, View } from 'react-native';
 import Node from '../node';
+import { withTheme } from '../theme';
 import styles from './style';
 
 const prefixCls = 'btn';
@@ -15,7 +16,7 @@ export interface ButtonProps {
   width?: number;
   style?: ViewStyle;
   textStyle?: TextStyle;
-  children?: React.ReactNode;
+  theme: AnnaNative.Theme;
   onPress?: () => void;
 }
 
@@ -30,9 +31,13 @@ const Button: React.FC<ButtonProps> = props => {
     width,
     style,
     textStyle,
+    theme,
     children,
     onPress,
   } = props;
+
+  const { colors } = theme;
+  const { primary } = colors;
 
   const btnStyle: any = [
     styles[prefixCls],
@@ -44,6 +49,7 @@ const Button: React.FC<ButtonProps> = props => {
     styles[`${prefixCls}-${look}`],
     styles[`${prefixCls}-${disabled && 'disabled'}`],
     width && { width: width },
+    { backgroundColor: primary },
     style,
   ].filter(i => i);
 
@@ -55,18 +61,16 @@ const Button: React.FC<ButtonProps> = props => {
     styles[`${prefixCls}-${plain && type === 'primary' && 'plain-primary'}-text`],
     styles[`${prefixCls}-${look}-text`],
     styles[`${prefixCls}-${disabled && 'disabled'}-text`],
+    { color: primary },
     textStyle,
   ].filter(i => i);
 
   const handlePress = () => {
-    if (disabled) {
-      return;
-    }
     onPress?.();
   };
 
   return (
-    <TouchableOpacity style={btnStyle} onPress={handlePress}>
+    <TouchableOpacity style={btnStyle} onPress={handlePress} disabled={disabled}>
       <Node style={btnTextStyle}>{children}</Node>
       {size === 'xxlarge' && type === 'primary' && !disabled ? (
         <View style={styles[`${prefixCls}-top-border-patch`]} />
@@ -75,4 +79,4 @@ const Button: React.FC<ButtonProps> = props => {
   );
 };
 
-export default Button;
+export default withTheme(Button);

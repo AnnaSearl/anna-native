@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { View, ScrollView, Text, Pressable, ViewStyle } from 'react-native';
 import Icon from '../icon';
 import SafeFilling from '../safe-filling';
-import { $dark4 } from '../style/theme';
+import Theme from '../style/theme';
 import styles from './style';
 
 const prefixCls = 'cascade';
@@ -197,7 +197,7 @@ const Cascade: React.FC<CascadeProps> = props => {
               <View style={styles[`${prefixCls}-step-prompt`]}>
                 <Text style={styles[`${prefixCls}-step-prompt-text`]}>{prompt?.(index)}</Text>
               </View>
-              <Icon name="line-return-cente-24" size={12} color={$dark4} />
+              <Icon name="line-return-cente-24" size={12} color={Theme.$dark4} />
             </View>
           </Pressable>
         ))}

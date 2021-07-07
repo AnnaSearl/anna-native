@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { $light4, $lightBase, $brandColor, $dark2, $dark3, $dark4 } from '../../style/theme';
+import Theme from '../../style/theme';
 
 const stepHeight = 50;
 
 const styles = StyleSheet.create<any>({
   cascade: {
     textAlign: 'left',
-    backgroundColor: $light4,
+    backgroundColor: Theme.$light4,
   },
   'cascade-selected': {
     minHeight: 45,
-    backgroundColor: $lightBase,
+    backgroundColor: Theme.$lightBase,
     paddingVertical: 12,
   },
   'cascade-step': {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create<any>({
   },
   'cascade-step-text': {
     lineHeight: stepHeight,
-    color: $dark2,
+    color: Theme.$dark2,
     fontSize: 15,
   },
   'cascade-step-dot': {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create<any>({
     bottom: '50%',
     left: 15,
     marginBottom: -4.5,
-    backgroundColor: $brandColor,
+    backgroundColor: Theme.$brandColor,
   },
   'cascade-step-line': {
     position: 'absolute',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create<any>({
     left: 15 + 4,
     width: 1,
     height: stepHeight,
-    backgroundColor: $brandColor,
+    backgroundColor: Theme.$brandColor,
   },
   'cascade-step-right': {
     flexDirection: 'row',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create<any>({
     paddingRight: 5,
   },
   'cascade-step-prompt-text': {
-    color: $dark4,
+    color: Theme.$dark4,
     fontSize: 15,
   },
   'cascade-options': {
@@ -66,13 +66,13 @@ const styles = StyleSheet.create<any>({
   },
   'cascade-title-text': {
     fontSize: 12,
-    color: $dark3,
+    color: Theme.$dark3,
   },
   'cascade-option': {
     paddingVertical: 15,
   },
   'cascade-option-text': {
-    color: $dark2,
+    color: Theme.$dark2,
     fontSize: 15,
   },
 });
