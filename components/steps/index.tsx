@@ -119,9 +119,9 @@ const Steps = (props: StepsProps): React.ReactElement => {
         >
           <View style={styles[`${prefixCls}-horizontal-container`]}>
             <View style={styles[`${prefixCls}-horizontal-icon`]}>
-              {index < current ? <Icon type="roundcheckfill" size="40px" color="#1890FF" /> : null}
+              {index < current ? <Icon name="roundcheckfill" size={20} color="#1890FF" /> : null}
               {index === current ? (
-                <Icon type={statusIconType} size="40px" color={statusIconColor} />
+                <Icon name={statusIconType} size={20} color={statusIconColor} />
               ) : null}
               {index > current ? (
                 <View style={styles[`${prefixCls}-horizontal-icon-default`]}>

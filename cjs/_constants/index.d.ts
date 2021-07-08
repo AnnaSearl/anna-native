@@ -1,0 +1,9 @@
+export declare const STATUS_BAR_HEIGHT = 20;
+export declare const TOP_SAFE_HEIGHT = 44;
+export declare const BOTTOM_SAFE_HEIGHT = 34;
+export declare const NAV_BAR_HEIGHT_IOS = 44;
+export declare const NAV_BAR_HEIGHT_ANDROID = 50;
+export declare const IPHONE12_NORMAL = 844;
+export declare const IPHONE12_MAX = 926;
+export declare const IPHONE12_MINI = 780;
+export declare const IMAGE_HOST = "https://fly-resource.oss-cn-shanghai.aliyuncs.com/fym-app/";

@@ -12,11 +12,11 @@ const styles = StyleSheet.create<any>({
     paddingHorizontal: 16,
   },
   'tabs-plain-item-text': {
-    fontSize: 13,
-    color: Theme.$fontColor3,
     height: 40,
     lineHeight: 40,
     textAlign: 'center',
+    fontSize: 13,
+    color: Theme.$fontColor3,
   },
   'tabs-plain-active': {
     position: 'absolute',

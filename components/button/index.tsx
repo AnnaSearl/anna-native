@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TouchableOpacity, ViewStyle, TextStyle, View } from 'react-native';
 import Node from '../node';
 import { withTheme } from '../theme';
-import styles from './style';
+import { createStylesWithTheme } from './style';
 
 const prefixCls = 'btn';
 
@@ -36,8 +36,7 @@ const Button: React.FC<ButtonProps> = props => {
     onPress,
   } = props;
 
-  const { colors } = theme;
-  const { primary } = colors;
+  const styles = createStylesWithTheme(theme);
 
   const btnStyle: any = [
     styles[prefixCls],
@@ -49,7 +48,6 @@ const Button: React.FC<ButtonProps> = props => {
     styles[`${prefixCls}-${look}`],
     styles[`${prefixCls}-${disabled && 'disabled'}`],
     width && { width: width },
-    { backgroundColor: primary },
     style,
   ].filter(i => i);
 
@@ -61,7 +59,6 @@ const Button: React.FC<ButtonProps> = props => {
     styles[`${prefixCls}-${plain && type === 'primary' && 'plain-primary'}-text`],
     styles[`${prefixCls}-${look}-text`],
     styles[`${prefixCls}-${disabled && 'disabled'}-text`],
-    { color: primary },
     textStyle,
   ].filter(i => i);
 

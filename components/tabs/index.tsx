@@ -30,7 +30,7 @@ export interface TabProps {
   titleActiveStyle?: TextStyle;
   tabBarStyle?: ViewStyle;
   hideCursor?: boolean;
-  renderTab?: (item?: TabTitleProps, index?: number) => React.ReactElement;
+  renderTab?: (item?: TabTitleProps, index?: number, isActive?: boolean) => React.ReactElement;
   renderTitleCursor?: () => React.ReactElement;
   onTabClick?: (i: any) => void;
 }
@@ -173,7 +173,7 @@ const Tabs = (props: TabProps): React.ReactElement => {
             onLayout={e => handleTabTitleLayout(e, index)}
           >
             {renderTab ? (
-              renderTab(item, index)
+              renderTab(item, index, selected === index)
             ) : (
               <Node
                 style={[

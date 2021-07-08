@@ -74,16 +74,16 @@ declare global {
     interface ThemeColors {
       primary: string;
       contrastive: string;
-      background: string;
-      surface: string;
-      accent: string;
-      error: string;
-      text: string;
-      onSurface: string;
-      disabled: string;
-      placeholder: string;
-      backdrop: string;
-      notification: string;
+      background?: string;
+      surface?: string;
+      accent?: string;
+      error?: string;
+      text?: string;
+      onSurface?: string;
+      disabled?: string;
+      placeholder?: string;
+      backdrop?: string;
+      notification?: string;
     }
 
     interface ThemeAnimation {
@@ -95,8 +95,8 @@ declare global {
       mode?: Mode;
       roundness: number;
       colors: ThemeColors;
-      fonts: ThemeFonts;
-      animation: ThemeAnimation;
+      fonts?: ThemeFonts;
+      animation?: ThemeAnimation;
     }
   }
 }

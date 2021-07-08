@@ -122,7 +122,7 @@ const Ling: React.ForwardRefRenderFunction<any, LingProps> = (props: LingProps, 
 
   const iconNode =
     typeof config?.icon === 'string' ? (
-      <Icon type={config?.icon} color={config?.iconColor} size="52px" />
+      <Icon name={config?.icon} color={config?.iconColor} size={26} />
     ) : (
       config?.icon
     );

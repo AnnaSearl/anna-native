@@ -3,9 +3,6 @@ import { View, Image } from 'react-native';
 import Node from '../node';
 import styles from './style';
 
-// @ts-ignore
-import SuccessIcon from '../assets/images/success_3x.png';
-
 const prefixCls = 'result';
 
 export interface ResultProps {
@@ -20,7 +17,10 @@ const Result: React.FC<ResultProps> = props => {
   return (
     <View style={styles[prefixCls]}>
       <View style={styles[`${prefixCls}-icon`]}>
-        <Image source={SuccessIcon} style={styles.successIcon} />
+        <Image
+          source={{ uri: 'https://smebimage.fuliaoyi.com/Fn1h5MKI-USpwK48WeC4uHCPCrvT' }}
+          style={styles.successIcon}
+        />
       </View>
 
       <Node style={styles[`${prefixCls}-title`]}>{title}</Node>
