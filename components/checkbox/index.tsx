@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Pressable, ViewStyle } from 'react-native';
 import Icon from '../icon';
+import { withTheme } from '../theme';
 import styles from './style';
 
 const prefixCls = 'checkbox';
@@ -8,9 +9,9 @@ const prefixCls = 'checkbox';
 type CheckboxValue = string | number;
 
 export interface CheckboxProps {
+  theme: AnnaNative.Theme;
   checked?: boolean;
   value?: CheckboxValue;
-  children?: React.ReactNode;
   style?: ViewStyle;
   checkboxStyle?: ViewStyle;
   contentStyle?: ViewStyle;
@@ -23,6 +24,7 @@ const Checkbox: React.FC<CheckboxProps> & {
   Group?: React.FC<GroupProps>;
 } = props => {
   const {
+    theme,
     checked,
     value,
     children,
@@ -33,6 +35,9 @@ const Checkbox: React.FC<CheckboxProps> & {
     onPress,
     onChange,
   } = props;
+
+  const { colors } = theme;
+  const { primary } = colors;
 
   const handleChange = (e: any) => {
     if (disabled) {
@@ -46,7 +51,7 @@ const Checkbox: React.FC<CheckboxProps> & {
     currentIcon = <Icon name="disabled" size={20} color="#9DA1AD" />;
   } else {
     currentIcon = checked ? (
-      <Icon name="selected" size={20} color={['#1B2844', '#FFFFFF']} />
+      <Icon name="selected" size={20} color={[primary, '#FFFFFF']} />
     ) : (
       <View style={styles[`${prefixCls}-unchecked`]} />
     );
@@ -109,6 +114,8 @@ const Group: React.FC<GroupProps> = props => {
   return <View style={{ flexDirection: direction }}>{checkboxs}</View>;
 };
 
-Checkbox.Group = Group;
+const CheckboxWithTheme = withTheme(Checkbox);
+//@ts-ignore
+CheckboxWithTheme.Group = withTheme(Group);
 
-export default Checkbox;
+export default CheckboxWithTheme;

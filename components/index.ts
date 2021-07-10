@@ -26,11 +26,15 @@ export { default as PickerViewColumn } from './picker-view-column';
 
 export { default as Steps } from './steps';
 
+export { default as Stepper } from './stepper';
+
 export { default as NavigationBar } from './navigation-bar';
 
 export { default as Cell } from './cell';
 
 export { default as FormValue } from './form-value';
+
+export { default as Checkbox } from './checkbox';
 
 export { default as Select } from './select';
 

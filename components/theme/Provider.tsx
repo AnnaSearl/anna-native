@@ -1,22 +1,19 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import ThemeContext from './context';
-import DefaultTheme from './DefaultTheme';
 
 export interface ThemeProviderProps {
   theme?: AnnaNative.Theme;
+  setTheme?: Dispatch<SetStateAction<AnnaNative.Theme>>;
 }
 
 const ThemeProvider: React.FC<ThemeProviderProps> = props => {
-  const { theme, children } = props;
-
-  const [themeState, setThemeState] = useState<AnnaNative.Theme>(theme || DefaultTheme);
+  const { theme, setTheme, children } = props;
 
   return (
     <ThemeContext.Provider
       value={{
-        theme: themeState,
-        setTheme: setThemeState,
+        theme,
+        setTheme,
       }}
     >
       {children}

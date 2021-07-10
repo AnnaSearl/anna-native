@@ -25,10 +25,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const icon_1 = __importDefault(require("../icon"));
+const theme_1 = require("../theme");
 const style_1 = __importDefault(require("./style"));
 const prefixCls = 'checkbox';
 const Checkbox = props => {
-    const { checked, value, children, style, checkboxStyle, contentStyle, disabled, onPress, onChange, } = props;
+    const { theme, checked, value, children, style, checkboxStyle, contentStyle, disabled, onPress, onChange, } = props;
+    const { colors } = theme;
+    const { primary } = colors;
     const handleChange = (e) => {
         if (disabled) {
             return;
@@ -40,7 +43,7 @@ const Checkbox = props => {
         currentIcon = React.createElement(icon_1.default, { name: "disabled", size: 20, color: "#9DA1AD" });
     }
     else {
-        currentIcon = checked ? (React.createElement(icon_1.default, { name: "selected", size: 20, color: ['#1B2844', '#FFFFFF'] })) : (React.createElement(react_native_1.View, { style: style_1.default[`${prefixCls}-unchecked`] }));
+        currentIcon = checked ? (React.createElement(icon_1.default, { name: "selected", size: 20, color: [primary, '#FFFFFF'] })) : (React.createElement(react_native_1.View, { style: style_1.default[`${prefixCls}-unchecked`] }));
     }
     return (React.createElement(react_native_1.Pressable, { style: [style_1.default[prefixCls], style], onPress: onPress },
         React.createElement(react_native_1.Pressable, { style: [style_1.default[`${prefixCls}-icon`], checkboxStyle], onPress: handleChange }, currentIcon),
@@ -69,5 +72,7 @@ const Group = props => {
     const checkboxs = getCheckboxs(children, value, onChange);
     return React.createElement(react_native_1.View, { style: { flexDirection: direction } }, checkboxs);
 };
-Checkbox.Group = Group;
-exports.default = Checkbox;
+const CheckboxWithTheme = theme_1.withTheme(Checkbox);
+//@ts-ignore
+CheckboxWithTheme.Group = theme_1.withTheme(Group);
+exports.default = CheckboxWithTheme;

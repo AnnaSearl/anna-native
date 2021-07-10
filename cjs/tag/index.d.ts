@@ -14,5 +14,5 @@ export interface CheckableTagProps extends TagProps {
     style?: ViewStyle;
     onChange?: (checked: boolean) => void;
 }
-declare const _default: (props: any) => JSX.Element;
-export default _default;
+declare const TagWithTheme: (props: any) => JSX.Element;
+export default TagWithTheme;

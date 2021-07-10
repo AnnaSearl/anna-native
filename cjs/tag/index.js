@@ -26,18 +26,19 @@ const React = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const node_1 = __importDefault(require("../node"));
 const theme_1 = require("../theme");
-const style_1 = __importDefault(require("./style"));
+const style_1 = require("./style");
 const prefixCls = 'tag';
 const Tag = props => {
-    const { size, look, plain, color, disabled, style, children, onPress } = props;
+    const { theme, size, look, plain, color, disabled, style, children, onPress } = props;
+    const styles = style_1.createStylesWithTheme(theme);
     const tagStyle = [
-        style_1.default[prefixCls],
-        plain ? style_1.default[`${prefixCls}-plain`] : null,
-        style_1.default[`${prefixCls}-${size}`],
-        style_1.default[`${prefixCls}-${look}`],
+        styles[prefixCls],
+        plain ? styles[`${prefixCls}-plain`] : null,
+        styles[`${prefixCls}-${size}`],
+        styles[`${prefixCls}-${look}`],
         color ? { color, borderColor: color } : null,
         style,
-        disabled ? style_1.default[`${prefixCls}-disabled`] : null,
+        disabled ? styles[`${prefixCls}-disabled`] : null,
     ];
     const handlePress = (e) => {
         if (disabled) {
@@ -50,17 +51,17 @@ const Tag = props => {
 };
 const CheckableTag = props => {
     const { theme, checked, style, children, onChange } = props;
-    const { colors } = theme;
-    const { primary } = colors;
+    const styles = style_1.createStylesWithTheme(theme);
     const handlePress = () => {
         onChange === null || onChange === void 0 ? void 0 : onChange(!checked);
     };
     return (React.createElement(Tag, Object.assign({}, props, { style: [
-            style_1.default[`${prefixCls}-checkable-default`],
-            checked
-                ? Object.assign(Object.assign({}, style_1.default[`${prefixCls}-checkable-secondary`]), { backgroundColor: primary }) : null,
+            styles[`${prefixCls}-checkable-default`],
+            checked ? Object.assign({}, styles[`${prefixCls}-checkable-secondary`]) : null,
             style,
         ], onPress: handlePress }), children));
 };
-Tag.CheckableTag = theme_1.withTheme(CheckableTag);
-exports.default = theme_1.withTheme(Tag);
+const TagWithTheme = theme_1.withTheme(Tag);
+//@ts-ignore
+TagWithTheme.CheckableTag = theme_1.withTheme(CheckableTag);
+exports.default = TagWithTheme;
