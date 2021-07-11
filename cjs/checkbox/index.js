@@ -73,6 +73,5 @@ const Group = props => {
     return React.createElement(react_native_1.View, { style: { flexDirection: direction } }, checkboxs);
 };
 const CheckboxWithTheme = theme_1.withTheme(Checkbox);
-//@ts-ignore
 CheckboxWithTheme.Group = theme_1.withTheme(Group);
 exports.default = CheckboxWithTheme;

@@ -1,9 +1,6 @@
 ---
 title: Tabs
 order: 10
-group:
-  title: Data Display
-  order: 2
 ---
 
 ## Tabs

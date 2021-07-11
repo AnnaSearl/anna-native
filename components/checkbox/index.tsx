@@ -9,13 +9,13 @@ const prefixCls = 'checkbox';
 type CheckboxValue = string | number;
 
 export interface CheckboxProps {
-  theme: AnnaNative.Theme;
   checked?: boolean;
   value?: CheckboxValue;
   style?: ViewStyle;
   checkboxStyle?: ViewStyle;
   contentStyle?: ViewStyle;
   disabled?: boolean;
+  theme: AnnaNative.Theme;
   onPress?: (e: any) => void;
   onChange?: (checked: boolean, e?: any, v?: CheckboxValue) => void;
 }
@@ -115,7 +115,7 @@ const Group: React.FC<GroupProps> = props => {
 };
 
 const CheckboxWithTheme = withTheme(Checkbox);
-//@ts-ignore
+
 CheckboxWithTheme.Group = withTheme(Group);
 
 export default CheckboxWithTheme;

@@ -11,6 +11,9 @@ export interface StepsProps {
     direction?: string;
     steps?: StepProps[];
     type?: 'arrow' | 'default';
+    theme: AnnaNative.Theme;
 }
-declare const Steps: (props: StepsProps) => React.ReactElement;
-export default Steps;
+declare const _default: React.FC<StepsProps> & {
+    [restProps: string]: any;
+};
+export default _default;

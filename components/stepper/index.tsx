@@ -3,17 +3,17 @@ import { View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { IMAGE_HOST } from '../_constants';
 import styles from './style';
 
-export interface TagProps {
-  value: number;
-  min: number;
-  max: number;
-  disabled: boolean;
-  onChange: Function;
+export interface StepperProps {
+  value?: number;
+  min?: number;
+  max?: number;
+  disabled?: boolean;
+  onChange?: Function;
   style?: React.CSSProperties;
 }
 
-const Stepper = (props: TagProps) => {
-  const { value, min = 1, max, onChange, disabled = false } = props;
+const Stepper: React.FC<StepperProps> = props => {
+  const { min = 1, value = min, max, onChange, disabled = false } = props;
 
   const [current, setCurrent] = React.useState(value);
 
@@ -52,7 +52,7 @@ const Stepper = (props: TagProps) => {
   const onSubText = () => {
     if (current < min) {
       setCurrent(min);
-    } else if (current > max) {
+    } else if (max && current > max) {
       setCurrent(max);
     }
     if (onChange) {
@@ -96,7 +96,7 @@ const Stepper = (props: TagProps) => {
         onSubmitEditing={onSubText}
         onChangeText={text => onChangeText(Number(text.replace(/[^\d]+/, '')))}
       />
-      {current >= max || disabled ? (
+      {(max && current >= max) || disabled ? (
         <Image
           style={styles.rocketImg}
           source={{

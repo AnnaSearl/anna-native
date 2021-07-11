@@ -18,6 +18,7 @@ export const createStylesWithTheme = (theme: AnnaNative.Theme) => {
       lineHeight: 32,
       fontSize: 13,
       textAlign: 'center',
+      color: primary,
     },
     'btn-small': {
       paddingHorizontal: 10,

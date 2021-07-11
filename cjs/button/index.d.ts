@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ViewStyle, TextStyle } from 'react-native';
 export interface ButtonProps {
     type?: 'primary';
@@ -12,5 +13,7 @@ export interface ButtonProps {
     theme: AnnaNative.Theme;
     onPress?: () => void;
 }
-declare const _default: (props: any) => JSX.Element;
+declare const _default: React.FC<ButtonProps> & {
+    [restProps: string]: any;
+};
 export default _default;

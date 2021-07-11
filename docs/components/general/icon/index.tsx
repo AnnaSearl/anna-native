@@ -14,21 +14,21 @@ export default () => {
   return (
     <>
       <View style={rowStyle}>
-        <Icon name="icondatou" />
-        <Icon name="iconline-address" />
-        <Icon name="iconline-search" />
+        <Icon name="tab_home" />
+        <Icon name="tab_msg" />
+        <Icon name="tab_my" />
       </View>
 
       <View style={rowStyle}>
-        <Icon name="icondatou" />
-        <Icon name="icondatou" size={24} />
-        <Icon name="icondatou" size={32} />
+        <Icon name="tab_my" />
+        <Icon name="tab_my" size={24} />
+        <Icon name="tab_my" size={32} />
       </View>
 
       <View style={rowStyle}>
-        <Icon name="iconline-photo" />
-        <Icon name="iconline-photo" color="#9966FF" />
-        <Icon name="iconline-photo" color="#FF6666" />
+        <Icon name="line-photo" />
+        <Icon name="line-photo" color="#9966FF" />
+        <Icon name="line-photo" color="#FF6666" />
       </View>
     </>
   );

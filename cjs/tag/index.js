@@ -62,6 +62,5 @@ const CheckableTag = props => {
         ], onPress: handlePress }), children));
 };
 const TagWithTheme = theme_1.withTheme(Tag);
-//@ts-ignore
 TagWithTheme.CheckableTag = theme_1.withTheme(CheckableTag);
 exports.default = TagWithTheme;

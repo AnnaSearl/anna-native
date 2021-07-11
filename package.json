@@ -1,6 +1,6 @@
 {
   "name": "anna-native",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Anna Native comes",
   "main": "cjs/index.js",
   "esnext": "esm/index.js",

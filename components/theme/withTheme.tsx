@@ -1,19 +1,28 @@
 import * as React from 'react';
 import ThemeContext from './context';
+import DefaultTheme from './DefaultTheme';
 
-export interface ComponentProps {
-  theme: AnnaNative.Theme;
+export interface AnyObject {
   [restProps: string]: any;
 }
 
-const withTheme = (Component: React.ComponentType<ComponentProps>) => {
-  return function (props: any) {
+export type ComponentType<T> = T & {
+  theme: AnnaNative.Theme;
+};
+
+type WithThemeComponentType<T> = React.FC<T> & { [restProps: string]: any };
+
+function withTheme<T>(Component: React.ComponentType<ComponentType<T>>): WithThemeComponentType<T> {
+  const withThemeComponent: React.FC<T> = props => {
     return (
       <ThemeContext.Consumer>
-        {context => <Component {...props} theme={context.theme} setTheme={context.setTheme} />}
+        {context => (
+          <Component {...props} theme={context.theme || DefaultTheme} setTheme={context.setTheme} />
+        )}
       </ThemeContext.Consumer>
     );
   };
-};
+  return withThemeComponent;
+}
 
 export default withTheme;

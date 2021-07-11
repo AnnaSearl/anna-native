@@ -1,9 +1,6 @@
 ---
 title: Steps
 order: 15
-group:
-  title: Data Display
-  order: 2
 ---
 
 ## Card

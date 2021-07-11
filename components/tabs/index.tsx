@@ -8,9 +8,9 @@ import {
   Animated,
   useWindowDimensions,
 } from 'react-native';
-import Theme from '../style/theme';
+import { withTheme } from '../theme';
 import Node from '../node';
-import styles from './style';
+import { createStylesWithTheme } from './style';
 
 const prefixCls = 'tabs';
 
@@ -19,9 +19,8 @@ export interface TabTitleProps {
   tab?: React.ReactNode;
 }
 
-export interface TabProps {
+export interface TabsProps {
   activeKey?: string | number;
-  children?: React.ReactNode;
   titleWidth?: number;
   titleSquare?: boolean;
   titleFlexible?: boolean;
@@ -30,18 +29,10 @@ export interface TabProps {
   titleActiveStyle?: TextStyle;
   tabBarStyle?: ViewStyle;
   hideCursor?: boolean;
+  theme: AnnaNative.Theme;
   renderTab?: (item?: TabTitleProps, index?: number, isActive?: boolean) => React.ReactElement;
   renderTitleCursor?: () => React.ReactElement;
   onTabClick?: (i: any) => void;
-}
-
-export interface TabContentProps {
-  key?: string | number;
-  tab?: React.ReactNode;
-  active?: boolean;
-  style?: ViewStyle;
-  animated?: boolean;
-  children?: React.ReactNode;
 }
 
 const getTabContents = (
@@ -57,7 +48,7 @@ const getTabContents = (
       return (
         tabs.push({ key: newNode.key, tab: newNode.props.tab }) &&
         tabContents.push(
-          <TabContent
+          <TabsWithTheme.TabContent
             key={newNode.key}
             {...newNode.props}
             active={
@@ -84,7 +75,7 @@ const getTabIndex = (tabs: TabTitleProps[], activeKey?: string | number) => {
   return tIndex;
 };
 
-const Tabs = (props: TabProps): React.ReactElement => {
+const Tabs: React.FC<TabsProps> = props => {
   const {
     activeKey,
     titleFlexible,
@@ -96,8 +87,14 @@ const Tabs = (props: TabProps): React.ReactElement => {
     renderTab,
     renderTitleCursor,
     onTabClick,
+    theme,
     children,
   } = props;
+
+  const styles = createStylesWithTheme(theme);
+
+  const { colors } = theme;
+  const { primary } = colors;
 
   const windowWidth = useWindowDimensions().width;
 
@@ -180,7 +177,7 @@ const Tabs = (props: TabProps): React.ReactElement => {
                   styles[`${prefixCls}-plain-item-text`],
                   titleStyle,
                   selected === index
-                    ? { fontWeight: '700', color: Theme.$brandColor, ...titleActiveStyle }
+                    ? { fontWeight: '700', color: primary, ...titleActiveStyle }
                     : null,
                 ]}
               >
@@ -217,10 +214,19 @@ const Tabs = (props: TabProps): React.ReactElement => {
   );
 };
 
-const TabContent: React.FC<TabContentProps> = (
-  props: TabContentProps,
-): React.ReactElement | null => {
-  const { active, style, children } = props;
+export interface TabContentProps {
+  key?: string | number;
+  tab?: React.ReactNode;
+  active?: boolean;
+  style?: ViewStyle;
+  animated?: boolean;
+  theme: AnnaNative.Theme;
+}
+
+const TabContent: React.FC<TabContentProps> = props => {
+  const { active, style, children, theme } = props;
+
+  const styles = createStylesWithTheme(theme);
 
   if (!active) {
     return (
@@ -238,6 +244,8 @@ const TabContent: React.FC<TabContentProps> = (
   );
 };
 
-Tabs.TabContent = TabContent;
+const TabsWithTheme = withTheme(Tabs);
 
-export default Tabs;
+TabsWithTheme.TabContent = withTheme(TabContent);
+
+export default TabsWithTheme;

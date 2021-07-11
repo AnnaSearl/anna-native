@@ -1,9 +1,6 @@
 ---
 title: Tag
 order: 20
-group:
-  title: Data Display
-  order: 2
 ---
 
 ## Tag

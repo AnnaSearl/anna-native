@@ -79,7 +79,7 @@ const CheckableTag: React.FC<CheckableTagProps> = props => {
 };
 
 const TagWithTheme = withTheme(Tag);
-//@ts-ignore
+
 TagWithTheme.CheckableTag = withTheme(CheckableTag);
 
 export default TagWithTheme;

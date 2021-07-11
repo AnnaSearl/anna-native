@@ -26,8 +26,8 @@ const React = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const _constants_1 = require("../_constants");
 const style_1 = __importDefault(require("./style"));
-const Stepper = (props) => {
-    const { value, min = 1, max, onChange, disabled = false } = props;
+const Stepper = props => {
+    const { min = 1, value = min, max, onChange, disabled = false } = props;
     const [current, setCurrent] = React.useState(value);
     React.useEffect(() => {
         if (current === value) {
@@ -60,7 +60,7 @@ const Stepper = (props) => {
         if (current < min) {
             setCurrent(min);
         }
-        else if (current > max) {
+        else if (max && current > max) {
             setCurrent(max);
         }
         if (onChange) {
@@ -78,7 +78,7 @@ const Stepper = (props) => {
                     uri: `${_constants_1.IMAGE_HOST}reduce_nor.png`,
                 } }))),
         React.createElement(react_native_1.TextInput, { returnKeyType: 'done', value: current + '', editable: !disabled, keyboardType: 'numeric', style: style_1.default.input, underlineColorAndroid: 'transparent', onBlur: onSubText, onSubmitEditing: onSubText, onChangeText: text => onChangeText(Number(text.replace(/[^\d]+/, ''))) }),
-        current >= max || disabled ? (React.createElement(react_native_1.Image, { style: style_1.default.rocketImg, source: {
+        (max && current >= max) || disabled ? (React.createElement(react_native_1.Image, { style: style_1.default.rocketImg, source: {
                 uri: `${_constants_1.IMAGE_HOST}add_dis.png`,
             } })) : (React.createElement(react_native_1.TouchableOpacity, { onPress: onPressAdd },
             React.createElement(react_native_1.Image, { style: style_1.default.rocketImg, source: {

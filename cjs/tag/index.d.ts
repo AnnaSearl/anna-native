@@ -1,6 +1,7 @@
+import * as React from 'react';
 import { ViewStyle, TextStyle } from 'react-native';
 export interface TagProps {
-    look?: 'blue' | 'green' | 'yellow' | 'red' | 'dark' | 'gray';
+    look?: 'primary' | 'blue' | 'green' | 'yellow' | 'red' | 'dark' | 'gray';
     size?: 'small' | 'medium' | 'large' | 'xlarge';
     plain?: boolean;
     color?: string;
@@ -14,5 +15,7 @@ export interface CheckableTagProps extends TagProps {
     style?: ViewStyle;
     onChange?: (checked: boolean) => void;
 }
-declare const TagWithTheme: (props: any) => JSX.Element;
+declare const TagWithTheme: React.FC<TagProps> & {
+    [restProps: string]: any;
+};
 export default TagWithTheme;

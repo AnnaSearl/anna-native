@@ -22,6 +22,7 @@ const createStylesWithTheme = (theme) => {
             lineHeight: 32,
             fontSize: 13,
             textAlign: 'center',
+            color: primary,
         },
         'btn-small': {
             paddingHorizontal: 10,

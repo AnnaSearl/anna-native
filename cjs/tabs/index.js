@@ -24,9 +24,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
-const theme_1 = __importDefault(require("../style/theme"));
+const theme_1 = require("../theme");
 const node_1 = __importDefault(require("../node"));
-const style_1 = __importDefault(require("./style"));
+const style_1 = require("./style");
 const prefixCls = 'tabs';
 const getTabContents = (children, activeKey, animated) => {
     const tabContents = [];
@@ -35,7 +35,7 @@ const getTabContents = (children, activeKey, animated) => {
         const newNode = node;
         if (react_1.default.isValidElement(node)) {
             return (tabs.push({ key: newNode.key, tab: newNode.props.tab }) &&
-                tabContents.push(react_1.default.createElement(TabContent, Object.assign({ key: newNode.key }, newNode.props, { active: activeKey === undefined
+                tabContents.push(react_1.default.createElement(TabsWithTheme.TabContent, Object.assign({ key: newNode.key }, newNode.props, { active: activeKey === undefined
                         ? index === 0 && newNode.key
                         : String(activeKey) === newNode.key, animated: animated }))));
         }
@@ -51,8 +51,11 @@ const getTabIndex = (tabs, activeKey) => {
     });
     return tIndex;
 };
-const Tabs = (props) => {
-    const { activeKey, titleFlexible, titleCursorWidth, titleStyle, titleActiveStyle, tabBarStyle, hideCursor, renderTab, renderTitleCursor, onTabClick, children, } = props;
+const Tabs = props => {
+    const { activeKey, titleFlexible, titleCursorWidth, titleStyle, titleActiveStyle, tabBarStyle, hideCursor, renderTab, renderTitleCursor, onTabClick, theme, children, } = props;
+    const styles = style_1.createStylesWithTheme(theme);
+    const { colors } = theme;
+    const { primary } = colors;
     const windowWidth = react_native_1.useWindowDimensions().width;
     const activeX = react_1.useRef(new react_native_1.Animated.Value(0)).current;
     const activeWidth = react_1.useRef(new react_native_1.Animated.Value(0)).current;
@@ -102,33 +105,35 @@ const Tabs = (props) => {
     const renderTabs = () => {
         return (react_1.default.createElement(react_native_1.ScrollView, { ref: ref => {
                 header.current = ref;
-            }, style: [style_1.default[`${prefixCls}-plain`], tabBarStyle], contentContainerStyle: [titleFlexible ? { flex: 1 } : null], horizontal: true, showsHorizontalScrollIndicator: false, onLayout: handleHeaderLayout },
-            tabs.map((item, index) => (react_1.default.createElement(react_native_1.Pressable, { key: item.key, style: [style_1.default[`${prefixCls}-plain-item`], titleFlexible ? { flex: 1 } : null], onPress: e => handleTabClick(e, item, index), onLayout: e => handleTabTitleLayout(e, index) }, renderTab ? (renderTab(item, index, selected === index)) : (react_1.default.createElement(node_1.default, { style: [
-                    style_1.default[`${prefixCls}-plain-item-text`],
+            }, style: [styles[`${prefixCls}-plain`], tabBarStyle], contentContainerStyle: [titleFlexible ? { flex: 1 } : null], horizontal: true, showsHorizontalScrollIndicator: false, onLayout: handleHeaderLayout },
+            tabs.map((item, index) => (react_1.default.createElement(react_native_1.Pressable, { key: item.key, style: [styles[`${prefixCls}-plain-item`], titleFlexible ? { flex: 1 } : null], onPress: e => handleTabClick(e, item, index), onLayout: e => handleTabTitleLayout(e, index) }, renderTab ? (renderTab(item, index, selected === index)) : (react_1.default.createElement(node_1.default, { style: [
+                    styles[`${prefixCls}-plain-item-text`],
                     titleStyle,
                     selected === index
-                        ? Object.assign({ fontWeight: '700', color: theme_1.default.$brandColor }, titleActiveStyle) : null,
+                        ? Object.assign({ fontWeight: '700', color: primary }, titleActiveStyle) : null,
                 ] }, item.tab))))),
             !hideCursor ? (renderTitleCursor ? (renderTitleCursor()) : (react_1.default.createElement(react_native_1.Animated.View, { style: [
-                    style_1.default[`${prefixCls}-plain-active`],
+                    styles[`${prefixCls}-plain-active`],
                     {
                         transform: [{ translateX: activeX }, { scaleX: titleCursorWidth || activeWidth }],
                     },
                 ] }))) : null));
     };
-    return (react_1.default.createElement(react_native_1.View, { style: style_1.default[prefixCls] },
+    return (react_1.default.createElement(react_native_1.View, { style: styles[prefixCls] },
         react_1.default.createElement(react_native_1.View, null, renderTabs()),
-        react_1.default.createElement(react_native_1.View, { style: style_1.default[`${prefixCls}-container`] },
-            react_1.default.createElement(react_native_1.View, { style: style_1.default[`${prefixCls}-content-wrapper`] }, tabContents))));
+        react_1.default.createElement(react_native_1.View, { style: styles[`${prefixCls}-container`] },
+            react_1.default.createElement(react_native_1.View, { style: styles[`${prefixCls}-content-wrapper`] }, tabContents))));
 };
-const TabContent = (props) => {
-    const { active, style, children } = props;
+const TabContent = props => {
+    const { active, style, children, theme } = props;
+    const styles = style_1.createStylesWithTheme(theme);
     if (!active) {
-        return (react_1.default.createElement(react_native_1.View, { style: [style_1.default[`${prefixCls}-content`], style_1.default[`${prefixCls}-content-inactive`], style] },
-            react_1.default.createElement(node_1.default, { style: style_1.default[`${prefixCls}-content-node`] }, children)));
+        return (react_1.default.createElement(react_native_1.View, { style: [styles[`${prefixCls}-content`], styles[`${prefixCls}-content-inactive`], style] },
+            react_1.default.createElement(node_1.default, { style: styles[`${prefixCls}-content-node`] }, children)));
     }
-    return (react_1.default.createElement(react_native_1.View, { style: [style_1.default[`${prefixCls}-content`], style] },
-        react_1.default.createElement(node_1.default, { style: style_1.default[`${prefixCls}-content-node`] }, children)));
+    return (react_1.default.createElement(react_native_1.View, { style: [styles[`${prefixCls}-content`], style] },
+        react_1.default.createElement(node_1.default, { style: styles[`${prefixCls}-content-node`] }, children)));
 };
-Tabs.TabContent = TabContent;
-exports.default = Tabs;
+const TabsWithTheme = theme_1.withTheme(Tabs);
+TabsWithTheme.TabContent = theme_1.withTheme(TabContent);
+exports.default = TabsWithTheme;

@@ -4,9 +4,8 @@ export interface TabTitleProps {
     key?: string | number;
     tab?: React.ReactNode;
 }
-export interface TabProps {
+export interface TabsProps {
     activeKey?: string | number;
-    children?: React.ReactNode;
     titleWidth?: number;
     titleSquare?: boolean;
     titleFlexible?: boolean;
@@ -15,6 +14,7 @@ export interface TabProps {
     titleActiveStyle?: TextStyle;
     tabBarStyle?: ViewStyle;
     hideCursor?: boolean;
+    theme: AnnaNative.Theme;
     renderTab?: (item?: TabTitleProps, index?: number, isActive?: boolean) => React.ReactElement;
     renderTitleCursor?: () => React.ReactElement;
     onTabClick?: (i: any) => void;
@@ -25,10 +25,9 @@ export interface TabContentProps {
     active?: boolean;
     style?: ViewStyle;
     animated?: boolean;
-    children?: React.ReactNode;
+    theme: AnnaNative.Theme;
 }
-declare const Tabs: {
-    (props: TabProps): React.ReactElement;
-    TabContent: React.FC<TabContentProps>;
+declare const TabsWithTheme: React.FC<TabsProps> & {
+    [restProps: string]: any;
 };
-export default Tabs;
+export default TabsWithTheme;

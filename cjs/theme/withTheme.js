@@ -24,9 +24,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __importStar(require("react"));
 const context_1 = __importDefault(require("./context"));
-const withTheme = (Component) => {
-    return function (props) {
-        return (React.createElement(context_1.default.Consumer, null, context => React.createElement(Component, Object.assign({}, props, { theme: context.theme, setTheme: context.setTheme }))));
+const DefaultTheme_1 = __importDefault(require("./DefaultTheme"));
+function withTheme(Component) {
+    const withThemeComponent = props => {
+        return (React.createElement(context_1.default.Consumer, null, context => (React.createElement(Component, Object.assign({}, props, { theme: context.theme || DefaultTheme_1.default, setTheme: context.setTheme })))));
     };
-};
+    return withThemeComponent;
+}
 exports.default = withTheme;

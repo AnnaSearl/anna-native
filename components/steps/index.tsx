@@ -4,9 +4,10 @@ import Node from '../node';
 import Icon from '../icon';
 import Row from '../row';
 import Col from '../col';
+import { withTheme } from '../theme';
 import Theme from '../style/theme';
 
-import styles from './style';
+import { createStylesWithTheme } from './style';
 
 const prefixCls = 'steps';
 
@@ -23,10 +24,17 @@ export interface StepsProps {
   direction?: string;
   steps?: StepProps[];
   type?: 'arrow' | 'default';
+  theme: AnnaNative.Theme;
 }
 
-const Steps = (props: StepsProps): React.ReactElement => {
-  const { direction = 'horizontal', current = 0, steps, status, type } = props;
+const Steps: React.FC<StepsProps> = props => {
+  const { direction = 'horizontal', current = 0, steps, status, type, theme } = props;
+
+  const styles = createStylesWithTheme(theme);
+
+  const { colors } = theme;
+  const { primary } = colors;
+
   const statusIconType = status === 'error' ? 'roundclosefill' : 'roundcheckfill';
   const statusIconColor = status === 'error' ? '#f5222d' : '#1890FF';
 
@@ -51,7 +59,7 @@ const Steps = (props: StepsProps): React.ReactElement => {
               )}
               {index === 0 ? (
                 <View style={styles[`${prefixCls}-step-current`]}>
-                  <Icon name="iconfill-select" size={18} color={Theme.$brandColor} />
+                  <Icon name="Ic-fil-Select" size={18} color={primary} />
                 </View>
               ) : (
                 <View style={styles[`${prefixCls}-step-circle`]} />
@@ -139,4 +147,4 @@ const Steps = (props: StepsProps): React.ReactElement => {
   );
 };
 
-export default Steps;
+export default withTheme(Steps);

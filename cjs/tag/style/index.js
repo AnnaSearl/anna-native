@@ -38,6 +38,10 @@ const createStylesWithTheme = (theme) => {
             height: 32,
             lineHeight: 32,
         },
+        'tag-primary': {
+            color: '#FFFFFF',
+            backgroundColor: primary,
+        },
         'tag-blue': {
             color: '#1467FF',
             backgroundColor: theme_1.default.$brandSecondaryColor,
