@@ -59,6 +59,6 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 2. `npm run lint` Check code style
 3. `npm run build` Compile Typescript code to esm, web and dist directory
 
-## 🍻 DingTalk communication group
+## 🍻 DingTalk group
 
 <img width="320" src="https://smebimage.fuliaoyi.com/FlE5Sr6AX5iVyynjozrVkEeBzVMR">

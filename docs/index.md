@@ -5,7 +5,7 @@ hero:
   desc: Elegant And Simple
   actions:
     - text: Getting Started
-      link: /components/general/button
+      link: /components/theme/theme
 features:
   - title: React Native
     desc: Base on React Native。
