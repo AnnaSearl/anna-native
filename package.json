@@ -2,10 +2,14 @@
   "name": "anna-native",
   "version": "1.1.6",
   "description": "Anna Native comes",
-  "main": "cjs/index.js",
-  "esnext": "esm/index.js",
-  "module": "esm/index.js",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "esnext": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "components/index",
+  "source": "components/index",
   "scripts": {
+    "typescript": "tsc --noEmit",
     "tsc": "tsc",
     "start": "dumi dev",
     "docs": "dumi build",
@@ -13,7 +17,12 @@
     "prebuild": "npm run clean",
     "clean": "rm -rf esm cjs",
     "deploy": "gh-pages -d site",
-    "local": "npm run build && yalc publish"
+    "local": "npm run build && yalc publish",
+    "prepare": "bob build",
+    "release": "release-it",
+    "example": "yarn --cwd example",
+    "pods": "cd example && pod-install --quiet",
+    "bootstrap": "yarn example && yarn && yarn pods"
   },
   "repository": {
     "type": "git",
@@ -25,13 +34,27 @@
     "react",
     "react-component",
     "react-native",
-    "ui"
+    "ui",
+    "ios",
+    "android"
   ],
   "author": "AnnaSearl",
   "license": "MIT",
   "files": [
     "esm",
-    "cjs"
+    "cjs",
+    "components",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "AnnaNative.podspec",
+    "!lib/typescript/example",
+    "!android/build",
+    "!ios/build",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
   ],
   "bugs": {
     "url": "https://github.com/AnnaSearl/anna-native/issues"
@@ -40,20 +63,21 @@
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-native": "^0.63.37",
-    "@umijs/plugin-sass": "^1.1.1",
     "cross-env": "^7.0.3",
-    "dumi": "^1.1.20",
-    "dumi-theme-mobile": "^1.1.3",
+    "dumi": "^1.1.23",
+    "dumi-theme-mobile": "^1.1.6",
     "gh-pages": "^3.2.2",
+    "pod-install": "^0.1.23",
     "prettier": "2.2.1",
+    "react": "16.13.1",
+    "react-native": "0.63.4",
+    "react-native-builder-bob": "^0.18.1",
     "react-native-iconfont-cli": "^2.2.1",
+    "release-it": "^14.10.0",
     "typescript": "^4.1.2",
     "umi-plugin-react-native": "^0.4.3"
   },
   "dependencies": {
-    "node-sass": "4.14.1",
-    "react": "16.13.1",
-    "react-native": "0.63.4",
     "react-native-image-picker": "^4.0.3",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-svg": "^12.1.0"
@@ -61,5 +85,40 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
-  }
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "react-native-builder-bob": {
+    "source": "components",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ]
 }

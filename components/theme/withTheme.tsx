@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ThemeContext from './context';
 import DefaultTheme from './DefaultTheme';
 
@@ -6,18 +6,24 @@ export interface AnyObject {
   [restProps: string]: any;
 }
 
-export type ComponentType<T> = T & {
+export interface ThemeProps {
   theme: AnnaNative.Theme;
-};
+}
 
 type WithThemeComponentType<T> = React.FC<T> & { [restProps: string]: any };
 
-function withTheme<T>(Component: React.ComponentType<ComponentType<T>>): WithThemeComponentType<T> {
-  const withThemeComponent: React.FC<T> = props => {
+function withTheme<T extends ThemeProps>(
+  Component: React.ComponentType<T>,
+): WithThemeComponentType<Omit<T, keyof ThemeProps>> {
+  const withThemeComponent: React.FC<Omit<T, keyof ThemeProps>> = props => {
     return (
       <ThemeContext.Consumer>
         {context => (
-          <Component {...props} theme={context.theme || DefaultTheme} setTheme={context.setTheme} />
+          <Component
+            {...(props as T)} // 必须强转
+            theme={context.theme || DefaultTheme}
+            setTheme={context.setTheme}
+          />
         )}
       </ThemeContext.Consumer>
     );

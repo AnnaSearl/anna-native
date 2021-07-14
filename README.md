@@ -22,7 +22,7 @@ npm install anna-native
 yarn add anna-native
 ```
 
-## 🎀 Usage
+## 🔮 Usage
 
 ```jsx
 import { Button } from 'anna-native';

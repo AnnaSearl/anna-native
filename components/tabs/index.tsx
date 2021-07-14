@@ -45,8 +45,7 @@ const getTabContents = (
   React.Children.forEach(children, (node: any, index: number) => {
     const newNode = node;
     if (React.isValidElement(node)) {
-      return (
-        tabs.push({ key: newNode.key, tab: newNode.props.tab }) &&
+      tabs.push({ key: newNode.key, tab: newNode.props.tab }) &&
         tabContents.push(
           <TabsWithTheme.TabContent
             key={newNode.key}
@@ -58,8 +57,7 @@ const getTabContents = (
             }
             animated={animated}
           />,
-        )
-      );
+        );
     }
   });
   return [tabs, tabContents];
@@ -131,7 +129,7 @@ const Tabs: React.FC<TabsProps> = props => {
     ]).start();
   };
 
-  const handleTabClick = (e: any, item: any, index: number) => {
+  const handleTabClick = (_e: any, item: any, index: number) => {
     onTabClick?.(item);
     const currentTabTitle = tabTitleLayouts?.[index];
     const currentTabTitleCenterPoint = currentTabTitle?.x + currentTabTitle?.width / 2;

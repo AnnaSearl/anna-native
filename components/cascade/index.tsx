@@ -86,6 +86,7 @@ const Cascade: React.FC<CascadeProps> = props => {
   } = props;
 
   const [levelOptions, setLevelOptions] = useState(options);
+  // @ts-ignore
   const [scrollTop, setScrollTop] = useState(0);
   const [localValue, setLocalValue] = useState<valueType[]>(value || []);
 

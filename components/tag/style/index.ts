@@ -29,7 +29,10 @@ export const createStylesWithTheme = (theme: AnnaNative.Theme) => {
       lineHeight: 15.5,
       paddingHorizontal: 3,
     },
-    'tag-large': {},
+    'tag-large': {
+      height: 29,
+      lineHeight: 29,
+    },
     'tag-xlarge': {
       height: 32,
       lineHeight: 32,
@@ -72,7 +75,7 @@ export const createStylesWithTheme = (theme: AnnaNative.Theme) => {
       borderRadius: 4,
       paddingHorizontal: 12,
     },
-    'tag-checkable-secondary': {
+    'tag-checkable-checked': {
       height: 32,
       lineHeight: 31,
       borderWidth: 0.5,

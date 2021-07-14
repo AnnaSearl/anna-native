@@ -1,6 +1,5 @@
 import { defineConfig } from 'dumi';
 import path from 'path';
-import { setTheme } from './components/style/theme';
 
 process.env.BABEL_ENV = 'dumi';
 
@@ -20,10 +19,7 @@ export default defineConfig({
     '@c-primary': '#9966FF',
   },
   exportStatic: {},
-  outputPath: 'site',
-  sass: {
-    implementation: require('node-sass'),
-  },
+  outputPath: 'website',
   extraPostCSSPlugins: [],
   extraBabelPlugins: [],
   alias: {
@@ -31,7 +27,6 @@ export default defineConfig({
   },
   chainWebpack(memo, { env, webpack, createCSSRule }) {
     // jsx 内联样式 px2rem
-    setTheme({ $brandColor: '#FFFFFF' });
   },
   styles: [
     `
@@ -44,7 +39,7 @@ export default defineConfig({
     .__dumi-default-mobile-demo-layout > div > div {
       margin-bottom: 10px;
     }
-    .icon.icon-link { 
+    .icon.icon-link {
       display: none;
     }
     .__dumi-default-navbar-logo{
@@ -76,17 +71,17 @@ export default defineConfig({
       word-break: break-all;
       margin-bottom: 6px;
     }
-    .anna-btn:not(.anna-btn-disabled):hover .anna-btn-mask {	
-      box-sizing: border-box;	
-      position: absolute;	
-      top: -1PX;	
-      right: -1PX;	
-      bottom: -1PX;	
-      left: -1PX;	
-      content: '';	
-      background-color: rgba(255, 255, 255, 0.35);	
-      border-radius: inherit;	
-      pointer-events: none;	
+    .anna-btn:not(.anna-btn-disabled):hover .anna-btn-mask {
+      box-sizing: border-box;
+      position: absolute;
+      top: -1PX;
+      right: -1PX;
+      bottom: -1PX;
+      left: -1PX;
+      content: '';
+      background-color: rgba(255, 255, 255, 0.35);
+      border-radius: inherit;
+      pointer-events: none;
       transition: background-color 0.3s;
     }
 

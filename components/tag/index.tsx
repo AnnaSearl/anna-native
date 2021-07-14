@@ -68,7 +68,7 @@ const CheckableTag: React.FC<CheckableTagProps> = props => {
       {...props}
       style={[
         styles[`${prefixCls}-checkable-default`],
-        checked ? { ...styles[`${prefixCls}-checkable-secondary`] } : null,
+        checked ? { ...styles[`${prefixCls}-checkable-checked`] } : null,
         style,
       ]}
       onPress={handlePress}

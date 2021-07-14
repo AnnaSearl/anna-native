@@ -5,7 +5,6 @@ import Icon from '../icon';
 import Row from '../row';
 import Col from '../col';
 import { withTheme } from '../theme';
-import Theme from '../style/theme';
 
 import { createStylesWithTheme } from './style';
 

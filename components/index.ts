@@ -68,4 +68,6 @@ export { default as ActionSheet } from './action-sheet';
 
 export { default as Result } from './result';
 
+export { default as Toast } from './toast';
+
 export * from './theme';

@@ -76,4 +76,6 @@ const Button: React.FC<ButtonProps> = props => {
   );
 };
 
-export default withTheme(Button);
+const ButtonWithTheme = withTheme(Button);
+
+export default ButtonWithTheme;

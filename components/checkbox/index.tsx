@@ -74,7 +74,7 @@ const getCheckboxs = (
   value: CheckboxValue[] = [],
   onChange?: (v?: CheckboxValue[], e?: any) => void,
 ) => {
-  const onGroupChange = (checked: any, e: any, v: CheckboxValue) => {
+  const onGroupChange = (_checked: any, e: any, v: CheckboxValue) => {
     const val: any[] = value || [];
     const newVal = val?.includes(v) ? val?.filter(i => i !== v) : val?.concat(v);
     const newValue = !Array.isArray(newVal) || newVal.length === 0 ? undefined : newVal;
@@ -116,6 +116,6 @@ const Group: React.FC<GroupProps> = props => {
 
 const CheckboxWithTheme = withTheme(Checkbox);
 
-CheckboxWithTheme.Group = withTheme(Group);
+CheckboxWithTheme.Group = Group;
 
 export default CheckboxWithTheme;
