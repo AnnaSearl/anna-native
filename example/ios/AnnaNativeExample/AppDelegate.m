@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "AnnaNativeExample-Swift.h"
+#import "OCViewController.h"
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -47,8 +48,9 @@ static void InitializeFlipper(UIApplication *application) {
   rnViewController.view = rootView;
   
   UIViewController *mainVC = [ViewController new];
+  OCViewController *OCMainVC = [OCViewController new];
   
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: rnViewController];
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: OCMainVC];
   navigationController.navigationBar.hidden = YES;
 
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

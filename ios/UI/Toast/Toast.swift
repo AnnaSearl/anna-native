@@ -16,8 +16,13 @@ public class ToastDuration: NSObject {
     @objc(Long) public static let long: TimeInterval = 3.5
 }
 
-class Toast: NSObject {
+open class Toast: NSObject {
     
+    // toast 静态全局单例
+    // static var toast: Toast?;
+    static var toast: Toast = Toast();
+    
+    // loading 静态全局单例
     static var loading: Toast = {
         let icon = UIActivityIndicatorView();
         icon.style = UIActivityIndicatorView.Style.whiteLarge;
@@ -26,32 +31,48 @@ class Toast: NSObject {
         return toast;
     }()
     
-    static public func show(text: String) {
-        let toast = Toast(text: text);
+    @objc static public func show(text: String) {
+        // 先隐藏前一个
+        toast.hide();
+        toast.toastView.text = text;
         toast.show();
     }
     
-    static public func show(text: String, duration: TimeInterval = ToastDuration.short) {
-        let toast = Toast(text: text, duration: duration);
+    @objc static public func show(text: String, duration: TimeInterval = ToastDuration.short) {
+        // 先隐藏前一个
+        toast.hide();
+        toast.toastView.text = text;
+        toast.duration = duration;
         toast.show();
     }
     
-    static public func showLoading() {
-        loading.showLoading();
+    @objc static public func hide() {
+        toast.hide();
     }
     
-    static public func showLoading(text: String) {
+    @objc static public func showLoading() {
+        loading.showLoading(isModal: true);
+    }
+    
+    @objc static public func showLoading(text: String) {
         loading.toastView.text = text;
-        loading.showLoading();
+        loading.showLoading(isModal: true);
     }
     
-    static public func hideLoading() {
+    @objc static public func hideLoading() {
         loading.hideLoading();
     }
     
     var toastView: ToastView = ToastView();
+    var modal: ToastMask = ToastMask();
     
     var duration: TimeInterval;
+    var toastTimer: Timer?;
+    
+    public init(duration: TimeInterval = ToastDuration.short) {
+        self.duration = duration;
+        super.init();
+    }
     
     public init(text: String, duration: TimeInterval = ToastDuration.short) {
         self.toastView.text = text;
@@ -66,33 +87,57 @@ class Toast: NSObject {
         super.init();
     }
     
-    public func show() {
+    public func show(isModal: Bool = false) {
         let ScreenCenterY = ScreenHeight / 2;
-        UIApplication.shared.windows.first?.addSubview(toastView);
+        
+        if (isModal == true) {
+            modal.addSubview(toastView);
+            UIApplication.shared.windows.first?.addSubview(modal);
+        } else {
+            UIApplication.shared.windows.first?.addSubview(toastView);
+        }
+        
+        // 这个一定要加，否则在快速连续点击时会出现 Toast 不显示的现象
+        self.toastView.alpha = 1;
+        // 设置刚出现时的位置
+        self.toastView.center.y = ScreenCenterY + 100;
+        
         UIView.animate(withDuration: ToastDuration.fade) {
             self.toastView.center.y = ScreenCenterY - 10;
         } completion: { finished in
             UIView.animate(withDuration: ToastDuration.fade) {
                 self.toastView.center.y = ScreenCenterY;
             } completion: { finished in
-                Timer.scheduledTimer(withTimeInterval: self.duration, repeats: false) { timer in
+                self.toastTimer = Timer.scheduledTimer(withTimeInterval: self.duration, repeats: false) { timer in
                     UIView.animate(withDuration: ToastDuration.fade) {
                         self.toastView.alpha = 0;
                     } completion: { finished in
-                        self.toastView.removeFromSuperview();
-                        timer.invalidate();
+                        self.hide();
                     }
                 }
             }
         }
     }
     
-    public func showLoading() {
+    public func hide() {
+        self.modal.removeFromSuperview();
+        self.toastView.removeFromSuperview();
+        self.toastTimer?.invalidate();
+    }
+    
+    public func showLoading(isModal: Bool = false) {
         let ScreenCenterY = ScreenHeight / 2;
         self.toastView.center.x = ScreenWidth / 2; // 不加这行不会水平居中对齐
         self.toastView.center.y = ScreenCenterY - 10;
         self.toastView.alpha = 0;
-        UIApplication.shared.windows.first?.addSubview(toastView);
+        
+        if (isModal == true) {
+            modal.addSubview(toastView);
+//            modal.backgroundColor = UIColor.init(white: 0, alpha: 0.7);
+            UIApplication.shared.windows.first?.addSubview(modal);
+        } else {
+            UIApplication.shared.windows.first?.addSubview(toastView);
+        }
         
         UIView.animate(withDuration: ToastDuration.fade) {
             self.toastView.alpha = 1;
@@ -103,6 +148,7 @@ class Toast: NSObject {
         UIView.animate(withDuration: ToastDuration.fade) {
             self.toastView.alpha = 0;
         } completion: { finished in
+            self.modal.removeFromSuperview();
             self.toastView.removeFromSuperview();
         }
     }

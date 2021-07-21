@@ -10,6 +10,7 @@
 		E14E504E269EE85D007A5362 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E504C269EE85D007A5362 /* ToastView.swift */; };
 		E14E504F269EE85D007A5362 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E504D269EE85D007A5362 /* Toast.swift */; };
 		E14E5057269EEEF5007A5362 /* UIColor+ArwenUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E14E5056269EEEF5007A5362 /* UIColor+ArwenUIColor.m */; };
+		E15C91C226A69C2E00835A76 /* ToastMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C91C126A69C2E00835A76 /* ToastMask.swift */; };
 		F4FF95D7245B92E800C19C63 /* AnnaNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* AnnaNative.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		E14E504D269EE85D007A5362 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		E14E5055269EEEF5007A5362 /* UIColor+ArwenUIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ArwenUIColor.h"; sourceTree = "<group>"; };
 		E14E5056269EEEF5007A5362 /* UIColor+ArwenUIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ArwenUIColor.m"; sourceTree = "<group>"; };
+		E15C91C126A69C2E00835A76 /* ToastMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMask.swift; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* AnnaNative-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnnaNative-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* AnnaNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnaNative.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,7 @@
 			children = (
 				E14E504D269EE85D007A5362 /* Toast.swift */,
 				E14E504C269EE85D007A5362 /* ToastView.swift */,
+				E15C91C126A69C2E00835A76 /* ToastMask.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			files = (
 				E14E504E269EE85D007A5362 /* ToastView.swift in Sources */,
 				E14E504F269EE85D007A5362 /* Toast.swift in Sources */,
+				E15C91C226A69C2E00835A76 /* ToastMask.swift in Sources */,
 				F4FF95D7245B92E800C19C63 /* AnnaNative.swift in Sources */,
 				E14E5057269EEEF5007A5362 /* UIColor+ArwenUIColor.m in Sources */,
 			);
@@ -264,6 +268,7 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEFINES_MODULE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -283,6 +288,7 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEFINES_MODULE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

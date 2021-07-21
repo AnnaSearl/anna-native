@@ -1,5 +1,5 @@
 PODS:
-  - AnnaNative (1.1.6):
+  - AnnaNative (1.1.7):
     - React-Core
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
@@ -341,7 +341,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AnnaNative: 678b2739af5a1842f5d47cb2f5f3b2567eaed98d
+  AnnaNative: 6385501b3bd35086ecdc00d14e021b76a56613cf
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   FBLazyVector: 3bb422f41b18121b71783a905c10e58606f7dc3e
