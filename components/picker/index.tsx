@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { View, Pressable } from 'react-native';
 import Popup from '../popup';
-import WheelView from '../picker-view';
-import Wheel from '../picker-view-column';
+import PickerView from '../picker-view';
+import PickerViewColumn from '../picker-view-column';
 import SafeFilling from '../safe-filling';
 import FormValue from '../form-value';
 import styles from './style';
@@ -83,10 +83,10 @@ const Picker: React.FC<PickerProps> = props => {
         </FormValue>
       </Pressable>
       <Popup position="bottom" open={open} onClose={() => setOpen(false)}>
-        <WheelView onOK={handleOK} onCancel={() => setOpen(false)}>
+        <PickerView onOK={handleOK} onCancel={() => setOpen(false)}>
           {multiple ? (
             range?.map((columnData: any[], index: number) => (
-              <Wheel
+              <PickerViewColumn
                 key={index}
                 style={
                   Array.isArray(rangeColumnsFlex) ? { flex: rangeColumnsFlex?.[index] } : undefined
@@ -98,14 +98,14 @@ const Picker: React.FC<PickerProps> = props => {
               />
             ))
           ) : (
-            <Wheel
+            <PickerViewColumn
               value={value as number}
               options={range}
               optionsKey={rangeKey}
               onChange={v => handleChangeColumn(false, v)}
             />
           )}
-        </WheelView>
+        </PickerView>
         <SafeFilling bottom />
       </Popup>
     </View>

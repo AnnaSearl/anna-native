@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import { View, ScrollView, Text, Pressable, ViewStyle } from 'react-native';
 import Icon from '../icon';
 import SafeFilling from '../safe-filling';
+import { withTheme } from '../theme';
+import { createStylesWithTheme } from './style';
 import Theme from '../style/theme';
-import styles from './style';
 
 const prefixCls = 'cascade';
 
@@ -68,6 +69,7 @@ export interface CascadeProps {
   options?: OptionProps[];
   changeOnSelect?: boolean;
   height?: string;
+  theme: AnnaNative.Theme;
   style?: ViewStyle;
   prompt?: (e: any) => string;
   onChange: (v: valueType[], selectedOptions?: OptionProps[], isLast?: boolean) => void;
@@ -81,6 +83,7 @@ const Cascade: React.FC<CascadeProps> = props => {
     changeOnSelect,
     height = 550,
     style,
+    theme,
     prompt,
     onChange,
   } = props;
@@ -171,6 +174,8 @@ const Cascade: React.FC<CascadeProps> = props => {
     });
   };
 
+  const styles = createStylesWithTheme(theme);
+
   return (
     <View
       style={[
@@ -224,4 +229,4 @@ const Cascade: React.FC<CascadeProps> = props => {
   );
 };
 
-export default Cascade;
+export default withTheme(Cascade);

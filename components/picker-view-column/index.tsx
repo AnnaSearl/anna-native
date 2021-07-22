@@ -2,16 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, Animated, PanResponder, ViewStyle } from 'react-native';
 import styles from './style';
 
-const prefixCls = 'wheel';
+const prefixCls = 'picker-view-column';
 
 const rowHeight = 44;
-
 export interface OptionObjProps {
   [propName: string]: string;
 }
 
 type OptionProps = string | OptionObjProps;
-
 export interface PickerViewColumnProps {
   value?: number;
   options?: OptionProps[];

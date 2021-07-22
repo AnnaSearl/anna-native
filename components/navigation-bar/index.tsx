@@ -62,6 +62,7 @@ export interface NavigationBarProps {
 const NavigationBar: React.FC<NavigationBarProps> & {
   config: NavigationBarConfigProps;
   setDefaultConfig: (config: any) => void;
+  LeftButton: React.FC<LeftButtonProps>;
 } = props => {
   const {
     leftText,
@@ -155,5 +156,7 @@ NavigationBar.setDefaultConfig = ({ onLeftPress }) => {
     NavigationBar.config.onLeftPress = onLeftPress;
   }
 };
+
+NavigationBar.LeftButton = LeftButton;
 
 export default NavigationBar;

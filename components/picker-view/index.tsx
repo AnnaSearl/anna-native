@@ -2,19 +2,23 @@ import * as React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Node from '../node';
-import styles from './style';
+import { withTheme } from '../theme';
+import { createStylesWithTheme } from './style';
 
-const prefixCls = 'wheel-view';
+const prefixCls = 'picker-view';
 
 export interface PickerViewProps {
   title?: React.ReactNode;
-  children?: React.ReactNode;
+  theme: AnnaNative.Theme;
   onOK?: (e: any) => void;
   onCancel?: (e: any) => void;
 }
 
 const PickerView: React.FC<PickerViewProps> = props => {
-  const { title, children, onOK, onCancel } = props;
+  const { title, theme, children, onOK, onCancel } = props;
+
+  const styles = createStylesWithTheme(theme);
+
   return (
     <View style={styles[prefixCls]}>
       <View style={styles[`${prefixCls}-toolbar`]}>
@@ -49,4 +53,4 @@ const PickerView: React.FC<PickerViewProps> = props => {
   );
 };
 
-export default PickerView;
+export default withTheme(PickerView);

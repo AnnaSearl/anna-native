@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create<any>({
-  wheel: {
+  'picker-view-column': {
     flex: 1,
   },
-  'wheel-content': {
+  'picker-view-column-content': {
     transform: [{ translateY: 88 }],
   },
-  'wheel-item': {
+  'picker-view-column-item': {
     height: 44,
   },
-  'wheel-item-text': {
+  'picker-view-column-item-text': {
     color: '#000',
     lineHeight: 44,
     textAlign: 'center',

@@ -1,6 +1,6 @@
 {
   "name": "anna-native",
-  "version": "1.1.8",
+  "version": "1.1.12",
   "description": "Anna Native comes",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -23,8 +23,7 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "commit": "sh shell/commit.sh",
-    "pub": "npm publish"
+    "commit": "sh shell/commit.sh"
   },
   "repository": {
     "type": "git",
@@ -43,8 +42,6 @@
   "author": "AnnaSearl",
   "license": "MIT",
   "files": [
-    "esm",
-    "cjs",
     "components",
     "lib",
     "android",

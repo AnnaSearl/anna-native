@@ -71,3 +71,14 @@ export { default as Result } from './result';
 export { default as Toast } from './toast';
 
 export * from './theme';
+
+import * as Util from './_util';
+import * as Constant from './_constants';
+
+export { Util, Constant };
+
+// ES2020 之前，下面这种写法不行，ES2020补上了这个写法。
+// https://es6.ruanyifeng.com/#docs/module#export-%E4%B8%8E-import-%E7%9A%84%E5%A4%8D%E5%90%88%E5%86%99%E6%B3%95
+
+// export * as Util from './_util';
+// export * as Constant from './_constants';
